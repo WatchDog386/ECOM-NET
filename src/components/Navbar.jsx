@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Menu, 
   X, 
-  Phone, 
-  Wifi
+  Phone
 } from "lucide-react";
 
 // Brand Configuration
@@ -18,11 +17,12 @@ const BRAND = {
 
 const FONT_FAMILY = `'Proxima Nova', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
 
+// Updated label for FAQs → Support
 const MENU_ITEMS = [
   { label: "Home", route: "/", id: "home" },
   { label: "About", route: "/about", id: "about" },
   { label: "Services", route: "/services", id: "services" },
-  { label: "FAQs", route: "/faq", id: "faqs" },
+  { label: "Support", route: "/faq", id: "support" }, // 🔁 Changed label only
   { label: "Contact", route: "/contact", id: "contact" },
 ];
 
@@ -52,10 +52,14 @@ export default function Navbar() {
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
         
-        {/* LOGO */}
+        {/* LOGO — Updated to use /ECOM.png */}
         <NavLink to="/" className="flex items-center gap-2 z-50 relative">
-          <div className="relative flex items-center justify-center w-10 h-10 bg-slate-50 rounded-xl border border-slate-100 text-[#015B97]">
-             <Wifi size={20} strokeWidth={2.5} />
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200">
+            <img 
+              src="/ECOM.png" 
+              alt="ECOM Network Logo" 
+              className="w-full h-full object-contain bg-white"
+            />
           </div>
           <div className="flex flex-col">
             <div className="flex items-baseline gap-0.5">
@@ -66,7 +70,7 @@ export default function Navbar() {
           </div>
         </NavLink>
 
-        {/* DESKTOP NAV — BLACK TEXT, BLUE HOVER */}
+        {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center">
           {MENU_ITEMS.map((item) => (
             <NavLink
@@ -87,7 +91,6 @@ export default function Navbar() {
 
         {/* RIGHT ACTIONS */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* BOLD GREEN PHONE ICON */}
           <a 
             href="tel:+254726818938"
             className="w-11 h-11 flex items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-200 hover:scale-105"
@@ -98,7 +101,6 @@ export default function Navbar() {
 
           <div className="h-6 w-px bg-slate-200 mx-1"></div>
 
-          {/* YELLOW "GET CONNECTED" — NO ARROW */}
           <NavLink 
             to="/contact"
             className="px-5 py-2.5 bg-[#FFC107] text-slate-900 hover:bg-[#FFB300] text-sm font-bold rounded-full shadow hover:shadow-md transition-colors"
@@ -168,7 +170,6 @@ export default function Navbar() {
                 Call Now
               </a>
 
-              {/* Mobile CTA — Yellow */}
               <NavLink 
                 to="/contact" 
                 className="flex items-center justify-center py-3 w-full bg-[#FFC107] text-slate-900 rounded-xl font-bold shadow"

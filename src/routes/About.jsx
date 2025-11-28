@@ -68,60 +68,67 @@ export default function AboutPage() {
 
       <Navbar />
 
-      {/* ================= HERO SECTION – MATCHES HERO.JSX ================= */}
+      {/* ================= HERO SECTION ================= */}
       <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             
-            {/* Left: Text */}
+            {/* Left: Text — CENTERED ON MOBILE */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeUp}
+              className="text-center lg:text-left"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 rounded-full mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 rounded-full mb-5 mx-auto lg:mx-0">
                 <span className="w-2 h-2 bg-[#B8860B] rounded-full"></span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600">Company Profile</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl font-bold text-[#004e82] leading-tight mb-5">
-                Engineering <br />
-                <span className="text-[#B8860B]">Kenya's Digital Backbone</span>
+                Reliability <br />
+                <span className="text-[#B8860B]">You Can Trust</span>
               </h1>
               
-              <p className="text-sm md:text-base text-slate-700 mb-6 max-w-lg leading-relaxed">
+              <p className="text-sm md:text-base text-slate-700 mb-6 max-w-lg leading-relaxed mx-auto lg:mx-0">
                 Ecom Network is more than an ISP. We are a digital infrastructure company dedicated to bridging urban centers and communities through precision engineering.
               </p>
 
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                 <button 
-                  onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+                  onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
                   className="px-5 py-2.5 text-sm font-bold rounded-full bg-[#004e82] text-white hover:bg-[#003c63] transition-colors shadow"
                 >
                   Our Solutions
                 </button>
-                <button className="px-5 py-2.5 text-sm font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors">
-                  Meet The Team
-                </button>
+                <a 
+                  href="/contact"
+                  className="px-5 py-2.5 text-sm font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors"
+                >
+                  Contact Us
+                </a>
               </div>
             </motion.div>
 
-            {/* Right: Hero Card (Matches Client Portal Style) */}
+            {/* Right: Image — HIDDEN ON MOBILE, VISIBLE FROM LG UP */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative h-[340px] bg-[#0a0a0a] rounded-2xl border border-[#333] overflow-hidden group"
+              className="relative h-[340px] rounded-2xl border border-[#333] overflow-hidden hidden lg:block"
             >
               <div 
-                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')] 
-                           bg-cover bg-center opacity-20 group-hover:opacity-15 transition-opacity duration-500"
+                className="absolute inset-0 bg-[url('https://www.shutterstock.com/image-photo/gadgets-addiction-young-black-family-260nw-2015527172.jpg')] 
+                           bg-cover bg-center"
               ></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#004e82]/90 to-transparent"></div>
+              
+              {/* Plain floating text — no background, no blur */}
               <div className="absolute bottom-6 left-6 text-white">
                 <Cpu className="w-8 h-8 mb-2 text-[#B8860B]" />
                 <h3 className="text-xl font-bold mb-1">Infrastructure First</h3>
-                <p className="text-[12px] opacity-90 max-w-xs">We own and operate our fiber network, ensuring end-to-end quality control.</p>
+                <p className="text-[12px] opacity-90 max-w-xs">
+                  We own and operate our fiber network, ensuring end-to-end quality control.
+                </p>
               </div>
             </motion.div>
           </div>
@@ -135,7 +142,7 @@ export default function AboutPage() {
             
             {/* Left: Narrative */}
             <div>
-              <h2 className="text-xl md:text-2xl font-bold text-[#004e82] mb-5">Our Narrative</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-[#004e82] mb-5">Our Story -</h2>
               <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
                 <p>
                   Established to solve the "last-mile" connectivity challenge, Ecom Network has grown from a neighborhood ISP to a regional telecommunications leader.
@@ -214,22 +221,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= CTA – CONSISTENT BUTTONS ================= */}
+      {/* ================= CTA ================= */}
       <section className="py-12 md:py-16 bg-white border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-xl md:text-2xl font-bold text-[#004e82] mb-4">Partner with a Licensed Provider</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#004e82] mb-4">Partner with a Reliable Provider</h2>
           <p className="text-slate-600 mb-6 text-sm md:text-base">
             Join the network designed for high-performance business and residential needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
             <button 
-              onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+              onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
               className="px-5 py-2.5 text-sm font-bold bg-[#004e82] text-white rounded-full hover:bg-[#003c63] transition-colors"
             >
               Contact Sales
             </button>
-            <a href="/coverage" className="px-5 py-2.5 text-sm font-bold bg-white text-[#004e82] border border-[#004e82] rounded-full hover:bg-blue-50 transition-colors">
-              View Coverage Map
+            <a 
+              href="/plans" 
+              className="px-5 py-2.5 text-sm font-bold bg-white text-[#004e82] border border-[#004e82] rounded-full hover:bg-blue-50 transition-colors"
+            >
+              View Plans
             </a>
           </div>
         </div>

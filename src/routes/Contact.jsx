@@ -6,17 +6,15 @@ import { Helmet } from "react-helmet";
 import {
   Phone,
   Mail,
-  MapPin,
-  ArrowRight,
-  Clock
+  MapPin
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 
 const FONT_FAMILY = `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`;
-const BRAND = {
-  primary: "#004e82",
-  golden: "#B8860B",
-  dark: "#0a0a0a"
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 const Contact = () => {
@@ -26,7 +24,6 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
-    subject: "Sales Inquiry",
     message: "",
   });
 
@@ -53,138 +50,141 @@ const Contact = () => {
 
       <Navbar />
 
-      {/* ================= HERO – MATCHES HERO.JSX ================= */}
-      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden border-b border-slate-200">
+      {/* ================= HERO SECTION ================= */}
+      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 border-b border-slate-200 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-            alt="Connectivity Background"
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute inset-0 bg-[url('/ECOM.png')] bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            
-            {/* Left: Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.8 }}
+            {/* Left: Text — CENTERED ON MOBILE */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className="text-center lg:text-left"
             >
-              <h1 className="text-3xl md:text-4xl font-bold text-[#004e82] leading-tight mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-[#004e82] leading-tight mb-6">
                 Let’s Build Your <br />
                 <span className="text-[#B8860B]">Digital Future</span>
               </h1>
-              
-              <p className="text-sm md:text-base text-slate-700 mb-6 max-w-lg leading-relaxed">
+              <p className="text-base md:text-lg text-slate-700 mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0">
                 Whether you're a home user or enterprise client, our engineers are ready to design your ideal connectivity solution.
               </p>
-
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                 <button 
-                  onClick={() => window.open("https://wa.me/254726818938", "_blank")}
-                  className="px-5 py-2.5 text-sm font-bold rounded-full bg-[#004e82] text-white hover:bg-[#003c63] transition-colors shadow"
+                  onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
+                  className="px-6 py-3 text-base font-bold rounded-full bg-[#004e82] text-white hover:bg-[#003c63] transition-colors shadow-md"
                 >
                   Chat on WhatsApp
                 </button>
                 <a 
                   href="tel:+254726818938"
-                  className="px-5 py-2.5 text-sm font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors"
+                  className="px-6 py-3 text-base font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors"
                 >
                   Call Now
                 </a>
               </div>
             </motion.div>
 
-            {/* Right: Dark Card (Matches Client Portal) */}
+            {/* Right: Image Card — HIDDEN ON MOBILE */}
             <motion.div 
-              initial={{ opacity: 0, x: 30 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[360px] rounded-2xl border border-[#333] overflow-hidden hidden lg:block"
             >
-              <div className="bg-[#0a0a0a] rounded-2xl overflow-hidden shadow-2xl relative h-[340px] flex items-center justify-center border border-[#333]">
-                <div 
-                  className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] 
-                             bg-cover bg-center opacity-15"
-                ></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent"></div>
-
-                <div className="relative z-10 text-center text-white px-6">
-                  <div className="w-12 h-12 border-2 border-white/30 rounded-full flex items-center justify-center mx-auto mb-4 bg-white/10 backdrop-blur-sm">
-                    <Phone className="w-6 h-6 text-[#B8860B]" />
-                  </div>
-                  <h3 className="text-xl font-light tracking-widest mb-1">24/7 ENGINEERING</h3>
-                  <h2 className="text-2xl font-bold mb-3 text-[#B8860B]">SUPPORT TEAM</h2>
-                  <p className="text-[11px] opacity-90 max-w-[160px] mx-auto">
-                    Reach our NOC directly for urgent network issues.
-                  </p>
-                </div>
+              <div className="absolute inset-0 bg-[url('https://storage.googleapis.com/cdn-website-bolddesk/2024/06/f70aae19-customer-service-compressed.jpg')] bg-cover bg-center"></div>
+              <div className="absolute inset-0 bg-black/30"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <Phone className="w-8 h-8 mb-2 text-[#B8860B]" />
+                <h3 className="text-xl font-bold mb-1">24/7 Customer Service</h3>
+                <p className="text-[12px] opacity-90 max-w-xs">
+                  Reach our NOC directly for urgent network issues.
+                </p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ================= CONTACT INFO (3-COLUMN GRID) ================= */}
-      <section className="py-12 md:py-16 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* ================= CONTACT INFO CARDS ================= */}
+      <section className="py-12 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Sales & Installation",
                 desc: "New connections, upgrades, quotes",
                 phone: "+254 726 818 938",
                 email: "sales@ecomnetwork.co.ke",
-                icon: <Phone className="w-5 h-5" />
+                icon: <Phone className="w-5 h-5" />,
+                color: "bg-[#4F46E5]"
               },
               {
                 title: "Technical Support",
                 desc: "Outages, speed, billing",
                 phone: "+254 726 818 938",
                 email: "support@ecomnetwork.co.ke",
-                icon: <Mail className="w-5 h-5" />
+                icon: <Mail className="w-5 h-5" />,
+                color: "bg-[#EF4444]"
               },
               {
                 title: "Headquarters",
                 desc: "Visit our office",
                 address: "Thoram House, Lucky Summer, Nairobi",
-                icon: <MapPin className="w-5 h-5" />
+                icon: <MapPin className="w-5 h-5" />,
+                color: "bg-[#10B981]"
               }
             ].map((item, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl border border-slate-200 text-center">
-                <div className="w-10 h-10 bg-[#004e82] text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <span className="text-[#B8860B]">{item.icon}</span>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300 flex items-start gap-4"
+              >
+                <div className={`${item.color} w-10 h-10 rounded-full flex items-center justify-center text-white`}>
+                  {item.icon}
                 </div>
-                <h3 className="font-bold text-[#004e82] text-sm mb-1">{item.title}</h3>
-                <p className="text-[11px] text-slate-500 mb-2">{item.desc}</p>
-                {item.phone && (
-                  <a href={`tel:${item.phone.replace(/\s+/g, '')}`} className="block text-[12px] font-bold text-slate-800 hover:text-[#004e82]">
-                    {item.phone}
-                  </a>
-                )}
-                {item.email && (
-                  <a href={`mailto:${item.email}`} className="block text-[11px] text-slate-600 hover:text-[#004e82] mt-1">
-                    {item.email}
-                  </a>
-                )}
-                {item.address && (
-                  <p className="text-[11px] text-slate-600 mt-1">{item.address}</p>
-                )}
-              </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm mb-1">{item.title}</h3>
+                  <p className="text-slate-600 text-xs mb-2">{item.desc}</p>
+                  {item.phone && (
+                    <a href={`tel:${item.phone.replace(/\s+/g, '')}`} className="block text-[11px] font-bold text-slate-800 hover:text-[#004e82] leading-tight">
+                      {item.phone}
+                    </a>
+                  )}
+                  {item.email && (
+                    <a href={`mailto:${item.email}`} className="block text-[10px] text-slate-600 hover:text-[#004e82] mt-1 leading-tight">
+                      {item.email}
+                    </a>
+                  )}
+                  {item.address && (
+                    <p className="text-[10px] text-slate-600 mt-1 leading-tight">{item.address}</p>
+                  )}
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ================= FORM – DARK CARD STYLE ================= */}
-      <section className="py-12 md:py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-[#0a0a0a] rounded-2xl p-6 md:p-8 text-white">
-            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">Send a Message</h2>
+      {/* ================= CONTACT FORM – DARK CARD ================= */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            viewport={{ once: true }}
+            className="bg-[#0a0a0a] rounded-2xl p-8 text-white"
+          >
+            <h2 className="text-2xl font-bold text-center mb-6">Send a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl mx-auto">
               <div className="grid sm:grid-cols-2 gap-4">
                 <input 
@@ -192,7 +192,7 @@ const Contact = () => {
                   name="name"
                   placeholder="Your Name"
                   required
-                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
                   value={formData.name}
                   onChange={handleChange}
                 />
@@ -201,7 +201,7 @@ const Contact = () => {
                   name="email"
                   placeholder="Email Address"
                   required
-                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -210,7 +210,7 @@ const Contact = () => {
                 type="tel" 
                 name="phone"
                 placeholder="Phone (Optional)"
-                className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
                 value={formData.phone}
                 onChange={handleChange}
               />
@@ -219,7 +219,7 @@ const Contact = () => {
                 placeholder="How can we help you?"
                 rows="4"
                 required
-                className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B] resize-none"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B] resize-none"
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
@@ -227,13 +227,13 @@ const Contact = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-2.5 bg-[#B8860B] hover:bg-[#a67c00] text-white text-sm font-bold rounded-full transition-colors"
+                  className="px-6 py-3 text-base font-bold bg-[#B8860B] hover:bg-[#a67c00] text-white rounded-full shadow-md transition-colors"
                 >
                   {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

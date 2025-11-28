@@ -160,7 +160,7 @@ export default function Faqs() {
       <section className="relative w-full pt-24 pb-28 md:pt-28 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80"
+            src="https://www.shutterstock.com/image-photo/businessman-hand-browsing-internet-websites-260nw-246869518.jpg"
             alt="Support Team"
             className="w-full h-full object-cover"
           />

@@ -16,11 +16,11 @@ export default function Home() {
         />
         <meta
           property="og:title"
-          content="ECOM NETWORK | Fast Fiber Internet in Kenya"
+          content="Knoxfill Internet | Fast Fiber Internet in Kenya"
         />
         <meta
           property="og:description"
-          content="Experience high-speed fiber internet by ECOM NETWORK. Designed for homes and businesses across Kenya."
+          content="Experience high-speed fiber internet by Knoxfill. Designed for homes and businesses across Kenya."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://noxfill.co.ke" />
