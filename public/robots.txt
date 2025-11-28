@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Point to your sitemap
-Sitemap: https://knoxvilletechnologies.com/sitemap.xml
+Sitemap: ecom-net.netlify.app

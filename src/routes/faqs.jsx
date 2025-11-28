@@ -267,10 +267,10 @@ export default function Faqs() {
                   <div className="w-8 h-8 bg-white/10 rounded flex items-center justify-center mb-3">
                     <Headphones size={16} />
                   </div>
-                  <p className="font-bold text-sm mb-2">Need Engineering?</p>
-                  <p className="text-[11px] text-slate-400 mb-3">Our NOC is available 24/7 for critical issues.</p>
+                  <p className="font-bold text-sm mb-2">Need connection?</p>
+                  <p className="text-[11px] text-slate-400 mb-3">Our Team is available 24/7 for critical issues.</p>
                   <button 
-                    onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+                    onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
                     className="w-full py-2 bg-[#B8860B] hover:bg-[#a67c00] text-white rounded text-[12px] font-bold transition-colors flex items-center justify-center gap-1"
                   >
                     Open Ticket
@@ -370,7 +370,7 @@ export default function Faqs() {
                 <Phone size={18} />
               </div>
               <span className="text-[12px] font-bold">Technical Hotline</span>
-              <span className="text-[10px] text-slate-500">+254 726 818 938</span>
+              <span className="text-[10px] text-slate-500">+254 716 425 483</span>
             </a>
             
             <a href="mailto:support@ecomnetwork.co.ke" className="flex flex-col items-center bg-white p-4 rounded-xl border border-slate-200 hover:border-[#004e82] transition-colors">
@@ -382,7 +382,7 @@ export default function Faqs() {
             </a>
 
             <a 
-              href="https://wa.me/254726818938" 
+              href="https://wa.me/+254716425483" 
               target="_blank" 
               rel="noreferrer"
               className="flex flex-col items-center bg-[#25D366] p-4 rounded-xl text-white"
