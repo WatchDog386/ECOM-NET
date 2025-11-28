@@ -1,3 +1,4 @@
+// Contact.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,37 +7,17 @@ import {
   Phone,
   Mail,
   MapPin,
-  Wifi,
-  Code2,
-  Shield,
-  Cloud,
-  Server,
-  Monitor,
-  Clock,
-  CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Clock
 } from "lucide-react";
-import { FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
+import Navbar from "../components/Navbar";
 
-// Brand Colors
+const FONT_FAMILY = `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`;
 const BRAND = {
-  blue: "#015B97",
-  orange: "#FF8C00",
-  slate: "#f8fafc",
-  text: "#334155",
-  white: "#ffffff"
+  primary: "#004e82",
+  golden: "#B8860B",
+  dark: "#0a0a0a"
 };
-
-const FONT_FAMILY = `'Proxima Nova', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
-
-const issues = [
-  { value: "hardware", label: "Hardware Repair", icon: <Monitor className="w-6 h-6" /> },
-  { value: "networking", label: "Internet / WiFi", icon: <Wifi className="w-6 h-6" /> },
-  { value: "software", label: "Software Issue", icon: <Code2 className="w-6 h-6" /> },
-  { value: "security", label: "CCTV / Security", icon: <Shield className="w-6 h-6" /> },
-  { value: "cloud", label: "Server / Cloud", icon: <Cloud className="w-6 h-6" /> },
-  { value: "other", label: "General Inquiry", icon: <Server className="w-6 h-6" /> },
-];
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -45,7 +26,7 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
-    issue: "",
+    subject: "Sales Inquiry",
     message: "",
   });
 
@@ -57,258 +38,204 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
-      if (formData.issue) {
-        navigate(`/technicians/${formData.issue.toLowerCase()}`);
-      } else {
-        navigate("/technicians");
-      }
-    }, 1000);
+      navigate("/thank-you");
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-16" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white text-slate-800 font-sans" style={{ fontFamily: FONT_FAMILY }}>
       <Helmet>
-        <title>Contact Us | Knoxville Technologies</title>
-        <meta name="description" content="Get in touch with Knoxville Technologies for support, inquiries, or visit our offices in Lucky Summer, Nairobi." />
+        <title>Contact Us | Ecom Network Solutions</title>
+        <meta name="description" content="Reach our engineering team for fiber internet, support, or business inquiries." />
       </Helmet>
 
-      {/* ================= HEADER SECTION ================= */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-[#FF8C00] font-bold tracking-wider uppercase text-sm">Get in Touch</span>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3 mb-4 text-slate-900">
-            We're here to <span className="text-[#015B97]">help</span>
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Whether you have a question about our plans, need technical support, or just want to say hello, our team is ready to answer all your questions.
-          </p>
-        </motion.div>
-      </div>
+      <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          
-          {/* ================= LEFT: CONTACT INFO SIDEBAR ================= */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-1 space-y-6"
-          >
-            {/* Info Cards */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-              <div className="p-6 space-y-6">
-                
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-[#015B97]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">Call Us</h3>
-                    <p className="text-sm text-slate-500 mb-1">Mon-Fri from 8am to 5pm</p>
-                    <a href="tel:+254726818938" className="block font-semibold text-[#015B97] hover:underline">0726 818 938</a>
-                    <a href="tel:+254724169963" className="block font-semibold text-[#015B97] hover:underline">0724 169 963</a>
-                  </div>
-                </div>
+      {/* ================= HERO – MATCHES HERO.JSX ================= */}
+      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden border-b border-slate-200">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+            alt="Connectivity Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+        </div>
 
-                <hr className="border-slate-100" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            
+            {/* Left: Text */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-3xl md:text-4xl font-bold text-[#004e82] leading-tight mb-4">
+                Let’s Build Your <br />
+                <span className="text-[#B8860B]">Digital Future</span>
+              </h1>
+              
+              <p className="text-sm md:text-base text-slate-700 mb-6 max-w-lg leading-relaxed">
+                Whether you're a home user or enterprise client, our engineers are ready to design your ideal connectivity solution.
+              </p>
 
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-[#FF8C00]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">Email Us</h3>
-                    <p className="text-sm text-slate-500 mb-1">Speak to our friendly team</p>
-                    <a href="mailto:support@knoxville.co.ke" className="font-semibold text-[#015B97] hover:underline">support@knoxville.co.ke</a>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                <button 
+                  onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+                  className="px-5 py-2.5 text-sm font-bold rounded-full bg-[#004e82] text-white hover:bg-[#003c63] transition-colors shadow"
+                >
+                  Chat on WhatsApp
+                </button>
+                <a 
+                  href="tel:+254726818938"
+                  className="px-5 py-2.5 text-sm font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors"
+                >
+                  Call Now
+                </a>
+              </div>
+            </motion.div>
 
-                <hr className="border-slate-100" />
+            {/* Right: Dark Card (Matches Client Portal) */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="bg-[#0a0a0a] rounded-2xl overflow-hidden shadow-2xl relative h-[340px] flex items-center justify-center border border-[#333]">
+                <div 
+                  className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] 
+                             bg-cover bg-center opacity-15"
+                ></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent"></div>
 
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-slate-700" />
+                <div className="relative z-10 text-center text-white px-6">
+                  <div className="w-12 h-12 border-2 border-white/30 rounded-full flex items-center justify-center mx-auto mb-4 bg-white/10 backdrop-blur-sm">
+                    <Phone className="w-6 h-6 text-[#B8860B]" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">Visit Us</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      Thoram House, Ground Floor<br />
-                      Behind Naivas Supermarket<br />
-                      Lucky Summer, Nairobi
-                    </p>
-                  </div>
+                  <h3 className="text-xl font-light tracking-widest mb-1">24/7 ENGINEERING</h3>
+                  <h2 className="text-2xl font-bold mb-3 text-[#B8860B]">SUPPORT TEAM</h2>
+                  <p className="text-[11px] opacity-90 max-w-[160px] mx-auto">
+                    Reach our NOC directly for urgent network issues.
+                  </p>
                 </div>
               </div>
-              
-              {/* Social Bar */}
-              <div className="bg-slate-50 p-4 flex justify-center gap-6">
-                <a href="#" className="text-slate-400 hover:text-[#1877F2] transition-colors"><FaFacebook size={20} /></a>
-                <a href="#" className="text-slate-400 hover:text-black transition-colors"><FaTiktok size={20} /></a>
-                <a href="#" className="text-slate-400 hover:text-[#25D366] transition-colors"><FaWhatsapp size={20} /></a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CONTACT INFO (3-COLUMN GRID) ================= */}
+      <section className="py-12 md:py-16 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Sales & Installation",
+                desc: "New connections, upgrades, quotes",
+                phone: "+254 726 818 938",
+                email: "sales@ecomnetwork.co.ke",
+                icon: <Phone className="w-5 h-5" />
+              },
+              {
+                title: "Technical Support",
+                desc: "Outages, speed, billing",
+                phone: "+254 726 818 938",
+                email: "support@ecomnetwork.co.ke",
+                icon: <Mail className="w-5 h-5" />
+              },
+              {
+                title: "Headquarters",
+                desc: "Visit our office",
+                address: "Thoram House, Lucky Summer, Nairobi",
+                icon: <MapPin className="w-5 h-5" />
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-white p-5 rounded-xl border border-slate-200 text-center">
+                <div className="w-10 h-10 bg-[#004e82] text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span className="text-[#B8860B]">{item.icon}</span>
+                </div>
+                <h3 className="font-bold text-[#004e82] text-sm mb-1">{item.title}</h3>
+                <p className="text-[11px] text-slate-500 mb-2">{item.desc}</p>
+                {item.phone && (
+                  <a href={`tel:${item.phone.replace(/\s+/g, '')}`} className="block text-[12px] font-bold text-slate-800 hover:text-[#004e82]">
+                    {item.phone}
+                  </a>
+                )}
+                {item.email && (
+                  <a href={`mailto:${item.email}`} className="block text-[11px] text-slate-600 hover:text-[#004e82] mt-1">
+                    {item.email}
+                  </a>
+                )}
+                {item.address && (
+                  <p className="text-[11px] text-slate-600 mt-1">{item.address}</p>
+                )}
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* WhatsApp CTA Card */}
-            <div className="bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-2xl shadow-lg p-6 text-white relative overflow-hidden">
-               <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-white/20 w-24 h-24 rounded-full blur-xl"></div>
-               <h3 className="font-bold text-lg mb-2">Need Instant Help?</h3>
-               <p className="text-white/90 text-sm mb-4">Chat with our support team directly on WhatsApp.</p>
-               <a 
-                 href="https://wa.me/254726818938" 
-                 target="_blank" 
-                 rel="noreferrer"
-                 className="flex items-center justify-center gap-2 w-full bg-white text-[#128C7E] font-bold py-3 rounded-xl hover:bg-slate-100 transition-colors"
-               >
-                 <FaWhatsapp size={20} /> Start Chat
-               </a>
-            </div>
-          </motion.div>
-
-          {/* ================= RIGHT: CONTACT FORM ================= */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-2"
-          >
-            <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-10">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Send us a message</h2>
-              
-              <form onSubmit={handleSubmit} className="space-y-8">
-                
-                {/* Name & Email Row */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Full Name</label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      required
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#015B97] focus:bg-white transition-all"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Email Address</label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      required
-                      placeholder="john@example.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#015B97] focus:bg-white transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Issue Selector Grid */}
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-slate-700">What can we help you with?</label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {issues.map((item) => (
-                      <div 
-                        key={item.value}
-                        onClick={() => setFormData(prev => ({ ...prev, issue: item.value }))}
-                        className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 flex flex-col items-center justify-center text-center gap-2 ${
-                          formData.issue === item.value 
-                            ? 'bg-[#015B97] border-[#015B97] text-white shadow-md transform scale-105' 
-                            : 'bg-white border-slate-200 text-slate-600 hover:border-[#015B97] hover:bg-slate-50'
-                        }`}
-                      >
-                        <div className={formData.issue === item.value ? 'text-white' : 'text-[#FF8C00]'}>
-                          {item.icon}
-                        </div>
-                        <span className="text-xs font-bold">{item.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Message Area */}
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700">Your Message</label>
-                  <textarea 
-                    name="message"
-                    rows="4"
-                    placeholder="Please describe your issue or inquiry..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#015B97] focus:bg-white transition-all resize-none"
-                  ></textarea>
-                </div>
-
-                {/* Submit Button */}
+      {/* ================= FORM – DARK CARD STYLE ================= */}
+      <section className="py-12 md:py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-[#0a0a0a] rounded-2xl p-6 md:p-8 text-white">
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">Send a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl mx-auto">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <input 
+                type="tel" 
+                name="phone"
+                placeholder="Phone (Optional)"
+                className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B]"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              <textarea 
+                name="message"
+                placeholder="How can we help you?"
+                rows="4"
+                required
+                className="w-full bg-white/10 border border-white/20 rounded px-4 py-2.5 text-white placeholder:text-slate-300 focus:outline-none focus:border-[#B8860B] resize-none"
+                value={formData.message}
+                onChange={handleChange}
+              ></textarea>
+              <div className="text-center">
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-[#015B97] hover:bg-[#004a7c] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="px-6 py-2.5 bg-[#B8860B] hover:bg-[#a67c00] text-white text-sm font-bold rounded-full transition-colors"
                 >
-                  {isSubmitting ? (
-                    <span>Sending...</span>
-                  ) : (
-                    <>
-                      Send Message <ArrowRight className="w-5 h-5" />
-                    </>
-                  )}
+                  {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
-              </form>
-            </div>
-          </motion.div>
+              </div>
+            </form>
+          </div>
         </div>
-
-        {/* ================= MAP SECTION ================= */}
-        <div className="mt-20">
-          <motion.div 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-[400px] w-full relative"
-          >
-            {/* Google Maps Embed for Lucky Summer Area */}
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.486603994728!2d36.89458295!3d-1.24789665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f15a6d63806c1%3A0x90e2251976805509!2sLucky%20Summer%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1708445678910!5m2!1sen!2ske" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen="" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Knoxville Location"
-            ></iframe>
-            
-            {/* Map Overlay Card */}
-            <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg max-w-xs hidden md:block border border-slate-200">
-               <div className="flex items-center gap-3 mb-2">
-                 <div className="w-8 h-8 bg-[#FF8C00] rounded-lg flex items-center justify-center text-white">
-                   <MapPin className="w-4 h-4" />
-                 </div>
-                 <span className="font-bold text-slate-900">Our Location</span>
-               </div>
-               <p className="text-xs text-slate-600">
-                 Lucky Summer Estate, Nairobi.<br/>
-                 We are located at Thoram House.
-               </p>
-            </div>
-          </motion.div>
-        </div>
-
-      </div>
+      </section>
     </div>
   );
 };

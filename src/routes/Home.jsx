@@ -9,18 +9,18 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Knoxfill Internet | Reliable Fiber Internet in Kenya</title>
+        <title>ECOM NETWORK | Reliable Fiber Internet in Kenya</title>
         <meta
           name="description"
-          content="Get fast, affordable, and reliable fiber internet across Kenya. Knoxfill delivers top-tier connectivity to rural and urban communities."
+          content="Get fast, affordable, and reliable fiber internet across Kenya. ECOM NETWORK delivers top-tier connectivity to rural and urban communities."
         />
         <meta
           property="og:title"
-          content="Knoxfill Internet | Fast Fiber Internet in Kenya"
+          content="ECOM NETWORK | Fast Fiber Internet in Kenya"
         />
         <meta
           property="og:description"
-          content="Experience high-speed fiber internet by Knoxfill. Designed for homes and businesses across Kenya."
+          content="Experience high-speed fiber internet by ECOM NETWORK. Designed for homes and businesses across Kenya."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://noxfill.co.ke" />
@@ -39,9 +39,7 @@ export default function Home() {
         
     
 
-      <section id="faq">
-        <Faqs />
-      </section>
+      
 
       
         

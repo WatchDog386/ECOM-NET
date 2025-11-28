@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// ServicesPage.jsx
+import React from "react";
+import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { 
   Network, 
@@ -9,263 +10,250 @@ import {
   Wifi, 
   Briefcase, 
   Check, 
-  ChevronRight,
-  ArrowRight
+  ArrowRight,
+  Cpu,
+  Database,
+  Globe,
+  Settings,
+  Layers,
+  Code2
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 
-// Font stack
-const FONT_FAMILY = `'Proxima Nova', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+// Font & Brand
+const FONT_FAMILY = `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`;
+const BRAND = {
+  primary: "#004e82",
+  golden: "#B8860B",
+  accent: "#00a1df",
+  dark: "#0a0a0a",
+};
 
-// 🔥 SERVICE THEMES (Vuma Style)
-const SERVICE_THEMES = [
-  { name: 'blue', bg: 'bg-[#0061a8]', text: 'text-[#0061a8]', shadow: 'shadow-blue-500/30' },     // Network
-  { name: 'red', bg: 'bg-[#ed1c24]', text: 'text-[#ed1c24]', shadow: 'shadow-red-500/30' },       // Security
-  { name: 'cyan', bg: 'bg-[#00aeef]', text: 'text-[#00aeef]', shadow: 'shadow-cyan-500/30' },     // Cloud
-  { name: 'slate', bg: 'bg-slate-800', text: 'text-slate-800', shadow: 'shadow-slate-500/30' },    // Data Center
-  { name: 'orange', bg: 'bg-[#f7941d]', text: 'text-[#f7941d]', shadow: 'shadow-orange-500/30' }, // ISP
-  { name: 'green', bg: 'bg-[#00a651]', text: 'text-[#00a651]', shadow: 'shadow-green-500/30' },   // Consulting
-];
-
-// Services Data
 const services = [
   {
     id: "network",
     title: "Network Infrastructure",
-    description: "Design, implementation and management of robust network solutions.",
-    icon: <Network className="w-12 h-12" />,
-    features: ["Structured cabling", "Wireless deployment", "Security integration", "Optimization"],
+    description: "Enterprise-grade cabling, switching, and routing architecture designed for high-throughput environments.",
+    icon: <Network className="w-5 h-5" />,
+    features: ["Structured Cabling (Cat6/Fiber)", "Enterprise Wi-Fi Deployment", "SD-WAN Configuration", "Network Audits"],
   },
   {
     id: "security",
     title: "Cyber Security",
-    description: "Comprehensive measures to protect your digital assets and infrastructure.",
-    icon: <ShieldCheck className="w-12 h-12" />,
-    features: ["Firewall implementation", "Intrusion detection", "Security audits", "Data protection"],
+    description: "Proactive threat mitigation strategies protecting critical assets across physical and digital layers.",
+    icon: <ShieldCheck className="w-5 h-5" />,
+    features: ["Next-Gen Firewalls", "Endpoint Protection", "Penetration Testing", "Compliance Auditing"],
   },
   {
     id: "cloud",
-    title: "Cloud Solutions",
-    description: "Scalable cloud computing to enhance business operations and flexibility.",
-    icon: <Cloud className="w-12 h-12" />,
-    features: ["Cloud migration", "Hybrid solutions", "Cloud security", "24/7 monitoring"],
+    title: "Cloud Services",
+    description: "Scalable, hybrid cloud environments that ensure business continuity and operational flexibility.",
+    icon: <Cloud className="w-5 h-5" />,
+    features: ["Azure/AWS Migration", "Private Cloud Hosting", "SaaS Integration", "Disaster Recovery (DRaaS)"],
   },
   {
     id: "data-center",
-    title: "Data Center",
-    description: "Enterprise-grade data center services with maximum uptime reliability.",
-    icon: <Server className="w-12 h-12" />,
-    features: ["Colocation services", "Disaster recovery", "Data backup", "Infrastructure mgmt"],
+    title: "Data Center Solutions",
+    description: "Secure colocation and managed server services with guaranteed power and cooling redundancy.",
+    icon: <Server className="w-5 h-5" />,
+    features: ["Rack Colocation", "Virtual Private Servers", "Offsite Backups", "24/7 Monitoring"],
   },
   {
-    id: "isp",
-    title: "ISP Services",
-    description: "High-speed internet connectivity solutions for businesses and residential.",
-    icon: <Wifi className="w-12 h-12" />,
-    features: ["Fiber optic", "Wireless broadband", "Dedicated internet", "Bandwidth control"],
+    id: "connectivity",
+    title: "Dedicated Connectivity",
+    description: "Symmetrical fiber-optic internet access with Service Level Agreements (SLAs) for mission-critical uptime.",
+    icon: <Wifi className="w-5 h-5" />,
+    features: ["Dedicated Internet Access (DIA)", "MPLS / VPN", "Dark Fiber Leasing", "Redundant Links"],
   },
   {
     id: "consulting",
-    title: "IT Consulting",
-    description: "Expert technology consulting to align IT strategy with business goals.",
-    icon: <Briefcase className="w-12 h-12" />,
-    features: ["Technology roadmap", "Infrastructure audit", "Digital transform", "Vendor mgmt"],
+    title: "Strategic Consulting",
+    description: "Aligning technology roadmaps with organizational goals through expert CIO advisory services.",
+    icon: <Briefcase className="w-5 h-5" />,
+    features: ["Digital Transformation", "IT Budget Optimization", "Vendor Management", "Infrastructure Design"],
   },
 ];
 
-// Animation Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 12 }
-  }
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-slate-50" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white text-slate-800 font-sans" style={{ fontFamily: FONT_FAMILY }}>
       <Helmet>
-        <title>Services | Knoxville Internet</title>
-        <meta name="description" content="Explore Knoxville's professional services: ISP, network infrastructure, cloud solutions, security, data center, and IT consulting." />
+        <title>Services | Ecom Network Solutions</title>
+        <meta name="description" content="Enterprise network infrastructure, security, and connectivity solutions." />
       </Helmet>
-
-      <style>{`
-        @keyframes gradient-xy {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient-bg {
-          background: linear-gradient(-45deg, #f8fafc, #eff6ff, #f0fdf4, #fff7ed);
-          background-size: 400% 400%;
-          animation: gradient-xy 15s ease infinite;
-        }
-      `}</style>
 
       <Navbar />
 
       {/* ================= HERO SECTION ================= */}
-      <section className="relative py-24 md:py-32 flex items-center justify-center overflow-hidden bg-slate-900">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-            alt="Technology Background" 
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-900/90"></div>
-        </div>
+      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 border-b border-slate-200 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            
+            {/* Left: Text */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-full mb-5">
+                <span className="w-2.5 h-2.5 bg-[#B8860B] rounded-full"></span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-700">Solutions Portfolio</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-[#004e82] leading-tight mb-6">
+                Infrastructure for the <br />
+                <span className="text-[#B8860B]">Modern Enterprise</span>
+              </h1>
+              
+              <p className="text-base md:text-lg text-slate-700 mb-8 max-w-lg leading-relaxed">
+                We design, build, and manage the digital foundations that power Kenya's most forward-thinking organizations.
+              </p>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-block px-4 py-1 mb-4 rounded-full bg-blue-500/20 border border-blue-500 text-blue-400 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
-              Our Expertise
-            </span>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Solutions Built for <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">The Future</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
-              Comprehensive network infrastructure and digital services tailored to drive your business growth.
-            </p>
-          </motion.div>
+              <div className="flex flex-wrap gap-3">
+                <button 
+                  onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+                  className="px-6 py-3 text-base font-bold rounded-full bg-[#004e82] text-white hover:bg-[#003c63] transition-colors shadow-md"
+                >
+                  Contact Us
+                </button>
+                <button 
+                  onClick={() => document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 text-base font-bold rounded-full bg-white text-[#004e82] border-2 border-[#004e82] hover:bg-blue-50 transition-colors"
+                >
+                  View Plans
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Right: Tech Visualization */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[360px] bg-[#0a0a0a] rounded-2xl border border-[#333] p-6 flex items-center justify-center overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,78,130,0.15),transparent)]"></div>
+              <div className="relative z-10 grid grid-cols-2 gap-4 w-full">
+                {[
+                  { icon: <Server className="w-6 h-6" />, label: "Hosting" },
+                  { icon: <Globe className="w-6 h-6" />, label: "Network" },
+                  { icon: <ShieldCheck className="w-6 h-6" />, label: "Security" },
+                  { icon: <Database className="w-6 h-6" />, label: "Storage" },
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex flex-col items-center text-white text-sm font-medium">
+                    <div className="text-[#B8860B] mb-2">{item.icon}</div>
+                    {item.label}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ================= SERVICES GRID (Vuma Style) ================= */}
-      <section className="py-20 animate-gradient-bg relative overflow-hidden">
-        {/* Background Blobs */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      {/* ================= PROCESS STRIP ================= */}
+      <section className="bg-[#004e82] text-white py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { step: "01", title: "Assessment", desc: "Infrastructure audit & requirement gathering", icon: <Layers className="w-5 h-5" /> },
+              { step: "02", title: "Architecture", desc: "Technical design & capacity planning", icon: <Code2 className="w-5 h-5" /> },
+              { step: "03", title: "Deployment", desc: "Implementation & configuration", icon: <Settings className="w-5 h-5" /> },
+              { step: "04", title: "Management", desc: "24/7 Monitoring & support", icon: <Cpu className="w-5 h-5" /> },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col border-l-4 border-[#B8860B] pl-5">
+                <div className="flex items-center gap-3 mb-2 opacity-90">
+                  {item.icon}
+                  <span className="font-mono text-sm font-bold">STEP {item.step}</span>
+                </div>
+                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                <p className="text-[#cce6f7] text-base">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">What We Offer</h2>
-            <p className="text-slate-600 mt-3 max-w-2xl mx-auto">End-to-end technology solutions designed for reliability and performance.</p>
+      {/* ================= SERVICES GRID ================= */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#004e82] mb-4">Core Capabilities</h2>
+            <div className="w-16 h-1 bg-[#B8860B] mx-auto rounded-full"></div>
+            <p className="text-slate-600 text-lg mt-4 max-w-2xl mx-auto">
+              Delivering integrated technology stacks that drive operational efficiency.
+            </p>
           </div>
 
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {services.map((service, index) => {
-              // Assign colors based on index
-              const theme = SERVICE_THEMES[index % SERVICE_THEMES.length];
-
-              return (
-                <motion.div
-                  key={service.id}
-                  variants={cardVariants}
-                  whileHover={{ y: -10 }}
-                  className="bg-white rounded-[2rem] shadow-xl border border-white hover:border-blue-100 hover:shadow-2xl transition-all duration-500 flex flex-col overflow-visible relative group"
-                >
-                  {/* 1. COLORED HEADER (Curved) */}
-                  <div className={`${theme.bg} h-40 rounded-t-[2rem] rounded-bl-[4rem] relative flex items-center justify-center overflow-hidden transition-transform duration-500`}>
-                    {/* Decorative background circle */}
-                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    
-                    {/* Icon with gentle float animation */}
-                    <motion.div 
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className="text-white z-10"
-                    >
-                      {service.icon}
-                    </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl border border-slate-200 p-7 h-full flex flex-col group shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#004e82] transition-colors">
+                  <div className="text-[#004e82] group-hover:text-white transition-colors">
+                    {service.icon}
                   </div>
+                </div>
 
-                  {/* 2. FLOATING BUTTON (Sits on curve) */}
-                  <div className="absolute top-32 right-8 z-20">
-                    <motion.button
-                      whileHover={{ scale: 1.1, rotate: 90 }}
-                      whileTap={{ scale: 0.9 }}
-                      className={`w-14 h-14 rounded-full bg-white border-4 border-slate-50 flex items-center justify-center shadow-lg ${theme.text}`}
-                    >
-                      <ArrowRight className="w-6 h-6" />
-                    </motion.button>
-                  </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#004e82]">{service.title}</h3>
+                <p className="text-slate-600 text-base mb-6 flex-grow leading-relaxed">
+                  {service.description}
+                </p>
 
-                  {/* 3. BODY CONTENT */}
-                  <div className="p-8 pt-6 flex flex-col flex-grow">
-                    <h3 className={`text-xl font-bold mb-3 ${theme.text}`}>
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <div className="w-full h-px bg-slate-100 mb-6" />
-
-                    <ul className="space-y-3 mb-6 flex-grow">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-start text-sm text-slate-500 font-medium group-hover:text-slate-700 transition-colors">
-                          <div className={`mt-0.5 mr-3 p-1 rounded-full bg-slate-100 group-hover:bg-white group-hover:shadow-sm transition-all`}>
-                             <Check className={`w-3 h-3 ${theme.text}`} />
-                          </div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <motion.button
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full py-3 rounded-xl text-sm font-bold border-2 border-slate-100 text-slate-600 hover:text-white hover:border-transparent transition-all duration-300 group-hover:${theme.bg} group-hover:shadow-lg`}
-                    >
-                      Learn More
-                    </motion.button>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+                <div className="border-t border-slate-100 pt-5 mt-auto">
+                  <ul className="space-y-3 mb-6">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-start text-base text-slate-600">
+                        <Check className="w-5 h-5 text-[#00a1df] mt-0.5 mr-3 shrink-0 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="text-[#004e82] font-bold text-base flex items-center gap-2 group-hover:gap-3 transition-all">
+                    View Solution <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ================= CTA SECTION ================= */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
-         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Need a Custom Solution?</h2>
-            <p className="text-slate-300 text-lg mb-8">
-              We understand that every business is unique. Contact our expert consultants for a tailored infrastructure assessment.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-bold shadow-lg hover:shadow-blue-500/40 transition-all"
-              >
-                Get a Quote
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all"
-              >
-                Contact Sales
-              </motion.button>
+      {/* ================= CTA – UPDATED ================= */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="bg-[#0a0a0a] rounded-2xl p-10 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#B8860B] rounded-full filter blur-[120px] opacity-15"></div>
+            
+            <div className="relative z-10 max-w-xl">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Request Connection</h2>
+              <p className="text-[#cce6f7] text-lg">
+                Our certified engineers will analyze your location and propose the best fiber solution for your needs.
+              </p>
             </div>
-         </div>
-      </section>
 
+            <div className="relative z-10">
+              <button 
+                onClick={() => window.open("https://wa.me/254726818938", "_blank")}
+                className="px-8 py-4 text-base font-bold bg-[#B8860B] hover:bg-[#a67c00] text-white rounded-full shadow-lg transition-colors"
+              >
+                Schedule Installation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
