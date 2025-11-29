@@ -115,7 +115,7 @@ export default function ServicesPage() {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-700">Solutions Portfolio</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-[#004e82] leading-tight mb-6">
-                Infrastructure for the <br />
+              Suitable for the <br />
                 <span className="text-[#B8860B]">Modern Enterprise</span>
               </h1>
               <p className="text-base md:text-lg text-slate-700 mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0">
@@ -269,9 +269,9 @@ export default function ServicesPage() {
           <div className="bg-[#004e82] rounded-xl p-6 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-48 h-48 bg-[#B8860B] rounded-full filter blur-[60px] opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
             <div className="relative z-10 max-w-xl">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-2">Request a Consultation</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-2">Request installation</h2>
               <p className="text-[#cce6f7] text-sm md:text-base">
-                Our certified engineers will analyze your infrastructure and propose the best solution for your business.
+                Our certified technicians will locate you and reach out to carryout the installation .
               </p>
             </div>
             <div className="relative z-10">
@@ -279,7 +279,7 @@ export default function ServicesPage() {
                 onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
                 className="px-6 py-3 text-sm md:text-base font-bold bg-[#B8860B] hover:bg-[#a67c00] text-white rounded-lg shadow-md transition-colors group-hover:scale-105 transform transition-transform duration-200"
               >
-                Contact Experts
+                Contact Ecom Net
               </button>
             </div>
           </div>
