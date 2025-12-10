@@ -1,19 +1,20 @@
 // Hero.jsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Wifi, 
-  CheckCircle, 
-  X, 
-  Globe, 
-  ShieldCheck, 
-  HardHat, 
-  Gauge, 
+import {
+  Wifi,
+  CheckCircle,
+  X,
+  Globe,
+  ShieldCheck,
+  HardHat,
+  Gauge,
   Headphones,
   Phone,
   MessageCircle,
   Mail,
-  ArrowRight
+  ArrowRight,
+  MapPin // ✅ Added MapPin import
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -24,105 +25,73 @@ const FONT_FAMILY = `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`;
 const plans = [
   {
     name: "BASIC",
-    speed: "10mbps",
-    price: "2000",
-    headerColor: "bg-[#2C66A8]", 
-    btnColor: "bg-[#FFC107] text-slate-900",     
-    features: ["Ksh 2,000 Installation", "Average Speed 10 Mbps", "Unlimited Data"],
+    speed: "3 Mbps",
+    price: "100",
+    headerColor: "bg-[#2C66A8]",
+    btnColor: "bg-[#FFC107] text-slate-900",
+    features: ["Ksh 2,000 Installation", "Average Speed 3 Mbps", "Unlimited Data"],
     type: "home"
   },
   {
     name: "STANDARD",
-    speed: "20mbps",
-    price: "2500",
-    headerColor: "bg-[#4CAF50]", 
-    btnColor: "bg-[#9C27B0] text-white",     
-    features: ["Free Installation", "Average Speed 20 Mbps", "Unlimited Data"],
+    speed: "5 Mbps",
+    price: "1500",
+    headerColor: "bg-[#4CAF50]",
+    btnColor: "bg-[#9C27B0] text-white",
+    features: ["Free Installation", "Average Speed 5 Mbps", "Unlimited Data"],
     type: "home"
   },
   {
     name: "PREMIUM PLAN",
-    speed: "30mbps",
-    price: "3000",
-    headerColor: "bg-[#E69138]", 
-    btnColor: "bg-[#0D2C54] text-white",     
-    features: ["Free Installation", "Average Speed 30 Mbps", "Unlimited Data"],
+    speed: "10 Mbps",
+    price: "2000",
+    headerColor: "bg-[#E69138]",
+    btnColor: "bg-[#0D2C54] text-white",
+    features: ["Free Installation", "Average Speed 10 Mbps", "Unlimited Data"],
     type: "home"
   },
   {
     name: "ULTRA",
-    speed: "40mbps",
-    price: "4000",
-    headerColor: "bg-[#7E57C2]", 
-    btnColor: "bg-[#F57C00] text-white",     
-    features: ["Free Installation", "Average Speed 40 Mbps", "Unlimited Data"],
+    speed: "20 Mbps",
+    price: "3000",
+    headerColor: "bg-[#7E57C2]",
+    btnColor: "bg-[#F57C00] text-white",
+    features: ["Free Installation", "Average Speed 20 Mbps", "Unlimited Data"],
     type: "home"
   },
-  {
-    name: "SUPER",
-    speed: "60mbps",
-    price: "5000",
-    headerColor: "bg-[#E53935]", 
-    btnColor: "bg-[#0D2C54] text-white",     
-    features: ["Free Installation", "Average Speed 60 Mbps", "Unlimited Data"],
-    type: "home"
-  }
 ];
 
-// --- DATA: CONTACT CARDS (4-Grid Layout with Colors) ---
+// --- DATA: WHY CHOOSE US CARDS ---
 const infoCards = [
   {
-    icon: <Phone size={24} className="text-white" />,
-    color: "bg-[#004e82]", // Deep Blue
-    title: "Sales Hotline",
-    desc: "Call us for new connections, custom quotes, and business packages.",
-    link: "tel:+254726818938"
+    image: "https://vumafiber.com/wp-content/uploads/2025/03/fast-speeds.jpg",
+    title: "Blazing Fast Speeds 🚀",
   },
   {
-    icon: <MessageCircle size={24} className="text-white" />,
-    color: "bg-[#00a1df]", // Cyan
-    title: "Live Chat",
-    desc: "Instant responses via WhatsApp for quick troubleshooting and queries.",
-    link: "https://wa.me/+254716425483"
+    image: "https://vumafiber.com/wp-content/uploads/2025/03/reliable-connection-1.jpg",
+    title: "Reliable & Stable Connection 🔗",
   },
   {
-    icon: <Headphones size={24} className="text-white" />,
-    color: "bg-[#FFC107]", // Gold
-    title: "Technical Support",
-    desc: "24/7 engineering support to ensure your connection stays online.",
-    link: "#"
+    image: "https://vumafiber.com/wp-content/uploads/2025/03/affordable-wifi.jpg",
+    title: "Affordable & Flexible Plans 💰",
   },
   {
-    icon: <Mail size={24} className="text-white" />,
-    color: "bg-[#4CAF50]", // Green
-    title: "Email Desk",
-    desc: "Send us detailed inquiries regarding billing, invoices, or partnerships.",
-    link: "mailto:support@ecomnetwork.co.ke"
+    image: "https://vumafiber.com/wp-content/uploads/2025/03/Customer-support.jpg",
+    title: "Exceptional Customer Support ☎️",
+  },
+  {
+    image: "https://vumafiber.com/wp-content/uploads/2025/03/wide-coverage.jpg",
+    title: "Wide Coverage & Easy Setup",
   }
 ];
 
-// --- DATA: FEATURE STRIP WITH SEMANTIC ICON COLORS ---
+// --- DATA: FEATURE STRIP ---
 const featuresList = [
-  { 
-    icon: <Headphones size={28} className="text-[#FFC107]" />, 
-    label: "24/7 Customer Service" 
-  },
-  { 
-    icon: <Globe size={28} className="text-[#004e82]" />, 
-    label: "Wide Coverage" 
-  },
-  { 
-    icon: <HardHat size={28} className="text-[#E69138]" />, 
-    label: "Qualified Technicians" 
-  },
-  { 
-    icon: <ShieldCheck size={28} className="text-[#4CAF50]" />, 
-    label: "Secure Connection" 
-  },
-  { 
-    icon: <Gauge size={28} className="text-[#00a1df]" />, 
-    label: "High Speed Internet" 
-  },
+  { icon: <Headphones size={28} className="text-[#FFC107]" />, label: "24/7 Customer Service" },
+  { icon: <Globe size={28} className="text-[#004e82]" />, label: "Wide Coverage" },
+  { icon: <HardHat size={28} className="text-[#E69138]" />, label: "Qualified Technicians" },
+  { icon: <ShieldCheck size={28} className="text-[#4CAF50]" />, label: "Secure Connection" },
+  { icon: <Gauge size={28} className="text-[#00a1df]" />, label: "High Speed Internet" },
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -147,15 +116,6 @@ const featureIconVariants = {
   hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } }
 };
 
-const ctaCardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
-
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -169,7 +129,7 @@ const Hero = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const message = `Connection Request: ${selectedPlan?.name} (${selectedPlan?.speed}) by ${formData.name}`;
-    window.open(`https://wa.me/+254716425483?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/+254740943523?text=${encodeURIComponent(message)}`, '_blank');
     setShowForm(false);
   };
 
@@ -192,8 +152,7 @@ const Hero = () => {
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            
-            {/* LEFT: Typography & Buttons — CENTERED ON MOBILE */}
+            {/* LEFT */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }} 
               animate={{ opacity: 1, x: 0 }} 
@@ -201,8 +160,8 @@ const Hero = () => {
               className="text-center lg:text-left"
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.15] mb-5 tracking-tight">
-                Fast and <br/>
-                Affordable <span className="text-[#FFC107]">Network</span>
+                Make Your<br/>
+                A Happy  <span className="text-[#FFC107]">Place</span>
               </h1>
               
               <p className="text-sm md:text-base text-black font-medium mb-6 max-w-lg leading-relaxed mx-auto lg:mx-0">
@@ -217,7 +176,7 @@ const Hero = () => {
                   View Plans
                 </button>
                 <button 
-                  onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
+                  onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
                   className="px-5 py-2.5 text-sm font-bold rounded-full bg-white text-[#004e82] border border-[#004e82] hover:bg-blue-50 transition-colors"
                 >
                   Contact Sales
@@ -225,7 +184,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* RIGHT: Transparent Feature Card */}
+            {/* RIGHT */}
             <motion.div 
               initial={{ opacity: 0, x: 30 }} 
               animate={{ opacity: 1, x: 0 }} 
@@ -239,7 +198,7 @@ const Hero = () => {
               </div>
 
               <div className="rounded-2xl overflow-hidden shadow-2xl relative h-[340px] flex items-center justify-center group cursor-pointer border border-[#333]">
-                <div className="absolute inset-0 bg-[url('/ECOM.png')] bg-cover bg-center"></div>
+                <div className="absolute inset-0 bg-[url('/ecom.jpg')] bg-cover bg-center"></div>
                 <div className="absolute inset-0 bg-black/30"></div>
 
                 <div className="relative z-10 text-center text-white px-6">
@@ -258,32 +217,32 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* ================= FEATURE STRIP WITH ANIMATED ICONS ================= */}
+      {/* ================= FEATURE STRIP ================= */}
       <section className="hidden md:flex py-8 bg-slate-50 border-t border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 w-full">
-            <div className="flex items-center justify-around w-full">
-                {featuresList.map((feature, idx) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.1, duration: 0.5 }}
-                      viewport={{ once: true }}
-                      className="flex flex-col items-center text-center gap-2"
-                    >
-                        <motion.div
-                          variants={featureIconVariants}
-                          whileHover="hover"
-                          className="transition-all duration-300"
-                        >
-                            {feature.icon}
-                        </motion.div>
-                        <p className="text-black font-medium text-xs sm:text-sm max-w-[100px] leading-tight">
-                            {feature.label}
-                        </p>
-                    </motion.div>
-                ))}
-            </div>
+          <div className="flex items-center justify-around w-full">
+            {featuresList.map((feature, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center gap-2"
+              >
+                <motion.div
+                  variants={featureIconVariants}
+                  whileHover="hover"
+                  className="transition-all duration-300"
+                >
+                  {feature.icon}
+                </motion.div>
+                <p className="text-black font-medium text-xs sm:text-sm max-w-[100px] leading-tight">
+                  {feature.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -303,11 +262,10 @@ const Hero = () => {
                 whileHover={{ y: -5 }}
                 className="group w-full max-w-[290px]"
               >
-                <div className="bg-white rounded-xl overflow-visible relative flex flex-col border border-slate-100 
-                                shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <div className="bg-white rounded-xl overflow-visible relative flex flex-col border border-slate-100 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                   <div className={`${plan.headerColor} text-white pt-6 pb-7 rounded-t-xl rounded-b-[36px] flex flex-col items-center justify-center relative z-10`}>
                     <span className="text-[10px] font-bold uppercase tracking-wider opacity-90">{plan.name}</span>
-                    <h3 className="text-3xl font-extrabold mt-1">{plan.speed}</h3>
+                    <h3 className="text-3xl font-extrabold mt-1 text-black">{plan.speed}</h3> {/* ✅ Black Mbps */}
                     <div className="flex items-baseline gap-1 mt-1">
                       <span className="text-[12px]">Ksh</span>
                       <span className="text-xl font-bold">{plan.price}</span>
@@ -341,7 +299,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* ================= CONTACT/INFO GRID (4 Cards) ================= */}
+      {/* ================= WHY CHOOSE US SECTION (Vuma Style) ================= */}
       <section className="py-16 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
@@ -352,90 +310,69 @@ const Hero = () => {
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-[#004e82]">
-              How to Reach Us
+              Why Choose Ecom Net?
             </h2>
             <div className="w-16 h-1 bg-[#FFC107] mx-auto mt-4 rounded-full"></div>
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="flex flex-col sm:flex-row justify-center items-start gap-8 sm:gap-12"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
             {infoCards.map((card, idx) => (
-              <motion.a 
+              <motion.div 
                 key={idx} 
-                href={card.link} 
-                target="_blank"
-                rel="noopener noreferrer"
                 variants={itemVariants}
-                whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)" }}
-                className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all duration-300 group cursor-pointer block"
+                whileHover={{ scale: 1.02 }}
+                className="flex flex-col items-center text-center max-w-[180px]"
               >
-                <div className={`w-12 h-12 rounded-lg ${card.color} text-white flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110`}>
-                  {card.icon}
+                {/* ✅ Sharp corners: no 'rounded' class on image container */}
+                <div className="w-full h-48 mb-3 overflow-hidden">
+                  <img 
+                    src={card.image} 
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-300"
+                  />
                 </div>
-                <h3 className="text-lg font-bold text-slate-800 mb-2">{card.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {card.desc}
-                </p>
-              </motion.a>
+                <h3 className="text-lg font-bold text-slate-800">{card.title}</h3>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ================= FINAL CTA — UPGRADED & ANIMATED ================= */}
+      {/* ================= FINAL CTA BANNER (Vuma Style) ================= */}
       <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#004e82] mb-5 tracking-tight">
-                Partner with a Reliable Provider
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-gradient-to-r from-green-400 to-orange-500 rounded-xl p-8 text-white text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 flex items-center justify-center gap-2">
+              <span>🚀</span> Get Blazing-Fast Internet with Ecom Net!
             </h2>
-            
-            <p className="text-slate-600 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-                Join the network designed for high-performance business and residential needs. Experience 99.9% uptime and dedicated engineering support.
+            <p className="text-sm md:text-base mb-6 max-w-2xl mx-auto">
+              Reliable, high-speed internet for your home or business. Connect with us today!
             </p>
-          </motion.div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.open("https://wa.me/+254716425483", "_blank")}
-                className="bg-[#004e82] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#003c63] transition-all duration-300 min-w-[140px] text-sm"
-            >
-                Contact Sales
-            </motion.button>
-            
-            <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('plans').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-transparent border-2 border-[#004e82] text-[#004e82] font-bold py-3 px-6 rounded-full hover:bg-blue-50 transition-all duration-300 min-w-[140px] text-sm"
-            >
-                View Plans
-            </motion.button>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-4">
+              <button 
+                onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
+                className="bg-white text-[#004e82] font-bold py-2 px-6 rounded-full shadow hover:bg-blue-50 transition-colors flex items-center gap-2"
+              >
+                <Phone size={16} /> Contact Us Now
+              </button>
+              <button 
+                onClick={() => window.open("https://vumafiber.com/", "_blank")} // 🔁 Replace with your coverage URL
+                className="border-2 border-white text-white font-bold py-2 px-6 rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
+              >
+                <MapPin size={16} /> Check Coverage
+              </button>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-xs">
+              <Mail size={14} />
+              <span>Call us: <strong>0740943523</strong></span>
+            </div>
           </div>
-
-          {/* Optional: Subtle tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-8 text-xs text-slate-500"
-          >
-            Trusted by 500+ businesses across Kenya since 2020.
-          </motion.p>
         </div>
       </section>
 
@@ -484,7 +421,6 @@ const Hero = () => {
           </div>
         )}
       </AnimatePresence>
-
     </div>
   );
 };

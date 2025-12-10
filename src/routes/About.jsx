@@ -118,7 +118,7 @@ export default function AboutPage() {
               className="relative h-[340px] rounded-2xl border border-[#333] overflow-hidden hidden lg:block"
             >
               <div 
-                className="absolute inset-0 bg-[url('https://www.shutterstock.com/image-photo/gadgets-addiction-young-black-family-260nw-2015527172.jpg')] 
+                className="absolute inset-0 bg-[url('/ecom.jpg')] 
                            bg-cover bg-center"
               ></div>
               

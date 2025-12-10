@@ -56,7 +56,7 @@ export default function Navbar() {
         <NavLink to="/" className="flex items-center gap-2 z-50 relative">
           <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200">
             <img 
-              src="/ECOM.png" 
+              src="/log3.jpg" 
               alt="ECOM Network Logo" 
               className="w-full h-full object-contain bg-white"
             />
@@ -163,7 +163,7 @@ export default function Navbar() {
 
               {/* Mobile Phone Link */}
               <a 
-                href="tel:+254726818938"
+                href="tel:+254716425483"
                 className="flex items-center justify-center gap-3 py-3 w-full bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold mb-4"
               >
                 <Phone size={18} strokeWidth={2.5} />
