@@ -160,7 +160,7 @@ const Hero = () => {
               className="text-center lg:text-left"
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.15] mb-5 tracking-tight">
-                Make Your<br/>
+                Make Your Home<br/>
                 A Happy  <span className="text-[#FFC107]">Place</span>
               </h1>
               
