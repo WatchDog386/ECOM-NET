@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 import Hero from "../components/Hero";
 import Faqs from "./faqs";
-
+// Remove this import: import Footer from "../components/Footer"; // ❌ No longer needed here
 
 export default function Home() {
   return (
@@ -16,34 +16,22 @@ export default function Home() {
         />
         <meta
           property="og:title"
-          content="Knoxfill Internet | Fast Fiber Internet in Kenya"
+          content="Ecom Network | Fast Fiber Internet in Kenya"
         />
         <meta
           property="og:description"
-          content="Experience high-speed fiber internet by Knoxfill. Designed for homes and businesses across Kenya."
+          content="Experience high-speed fiber internet by ECOM NETWORK. Designed for homes and businesses across Kenya."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://noxfill.co.ke" />
-        {/* <meta property="og:image" content="https://noxfill.co.ke/assets/og-image.webp" /> */}
+        <meta property="og:url" content="https://ecom-net.netlify.app" />
+        {/* <meta property="og:image" content="https://ecom-net.netlify.app/assets/og-image.webp" /> */}
       </Helmet>
 
       <section id="hero">
         <Hero />
       </section>
 
-      
-        
-      
-
-      
-        
-    
-
-      
-
-      
-        
-      
+      {/* ❌ Remove this line: <Footer /> */}
     </>
   );
 }

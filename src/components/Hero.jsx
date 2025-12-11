@@ -26,7 +26,7 @@ const plans = [
   {
     name: "BASIC",
     speed: "3 Mbps",
-    price: "100",
+    price: "1000",
     headerColor: "bg-[#2C66A8]",
     btnColor: "bg-[#FFC107] text-slate-900",
     features: ["Ksh 2,000 Installation", "Average Speed 3 Mbps", "Unlimited Data"],
@@ -362,7 +362,7 @@ const Hero = () => {
                 <Phone size={16} /> Contact Us Now
               </button>
               <button 
-                onClick={() => window.open("https://vumafiber.com/", "_blank")} // 🔁 Replace with your coverage URL
+                onClick={() => window.open("https://ecom-net.netlify.app/", "_blank")} // 🔁 Replace with your coverage URL
                 className="border-2 border-white text-white font-bold py-2 px-6 rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
               >
                 <MapPin size={16} /> Check Coverage

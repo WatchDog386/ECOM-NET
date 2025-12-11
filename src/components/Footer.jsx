@@ -17,7 +17,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img 
-                src="/ECOM.png" 
+                src="/log3.jpg" // ✅ UPDATED: Use log3.jpg as logo
                 alt="ECOM Network Logo" 
                 className="w-12 h-12 rounded-lg object-contain bg-white"
               />
@@ -48,7 +48,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <Phone size={16} className="mt-0.5 flex-shrink-0 text-[#D4AF37]" />
-                <a href="tel:+254726818938" className="text-white hover:underline">+254 726 818938</a>
+                <a href="tel:+254740943523" className="text-white hover:underline">+254 740 943 523</a> {/* ✅ UPDATED PHONE */}
               </li>
               <li className="flex items-start gap-2">
                 <Mail size={16} className="mt-0.5 flex-shrink-0 text-[#D4AF37]" />
@@ -65,7 +65,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg text-white mb-4 tracking-wide">Get Connected</h4>
             <a
-              href="https://wa.me/254740943523  "
+              href="https://wa.me/254740943523" // ✅ UPDATED & TRIMMED URL
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1db954] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow hover:shadow-lg"
@@ -81,10 +81,10 @@ export default function Footer() {
            ========================================= */}
         <div className="md:hidden flex flex-col items-start space-y-8">
           
-          {/* Logo & Brand Name - FIXED: Changed src from /log3.jpg to /ECOM.png */}
+          {/* Logo & Brand Name */}
           <div className="flex items-center gap-3">
             <img 
-              src="/ECOM.png" // ✅ FIXED: Use the same image as desktop for consistency
+              src="/log3.jpg" // ✅ UPDATED: Consistent with desktop
               alt="ECOM Logo" 
               className="w-10 h-10 rounded-lg object-contain bg-white"
             />
@@ -97,7 +97,7 @@ export default function Footer() {
           {/* Big Green Button */}
           <div className="w-full">
             <a
-              href="https://wa.me/254726818938  "
+              href="https://wa.me/254740943523" // ✅ UPDATED & TRIMMED URL
               target="_blank"
               rel="noopener noreferrer"
               className="flex justify-center items-center gap-2 w-full bg-[#25D366] active:bg-[#1db954] text-white font-bold py-3.5 rounded-full text-base shadow-md"
@@ -109,7 +109,7 @@ export default function Footer() {
 
           {/* Contact Details (NOW PURE WHITE) */}
           <div className="w-full text-center space-y-2 text-white font-medium text-sm">
-            <p>+254 726 818938</p>
+            <p>+254 740 943 523</p> {/* ✅ UPDATED PHONE */}
             <p>support@ecomnetwork.co.ke</p>
             <p>Nairobi, Kenya</p>
           </div>

@@ -119,7 +119,7 @@ const Contact = () => {
               {
                 title: "Sales & Installation",
                 desc: "New connections, upgrades, quotes",
-                phone: "+254 726 818 938",
+                phone: "+254 740943523 ",
                 email: "sales@ecomnetwork.co.ke",
                 icon: <Phone className="w-5 h-5" />,
                 color: "bg-[#4F46E5]"
@@ -127,7 +127,7 @@ const Contact = () => {
               {
                 title: "Technical Support",
                 desc: "Outages, speed, billing",
-                phone: "+254 726 818 938",
+                phone: "+254 740943523",
                 email: "support@ecomnetwork.co.ke",
                 icon: <Mail className="w-5 h-5" />,
                 color: "bg-[#EF4444]"
@@ -135,7 +135,7 @@ const Contact = () => {
               {
                 title: "Headquarters",
                 desc: "Visit our office",
-                address: "Thoram House, Lucky Summer, Nairobi",
+                address: "umoja three, Nairobi",
                 icon: <MapPin className="w-5 h-5" />,
                 color: "bg-[#10B981]"
               }
