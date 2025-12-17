@@ -8,21 +8,20 @@ import {
   Phone
 } from "lucide-react";
 
-// Brand Configuration
+// 🔧 Brand Colors from Hero Page
 const BRAND = {
-  blue: "#015B97",
-  yellow: "#FFC107",
+  blue: "#003366",
+  yellow: "#F9A825",
   green: "#25D366",
 };
 
 const FONT_FAMILY = `'Proxima Nova', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
 
-// Updated label for FAQs → Support
 const MENU_ITEMS = [
   { label: "Home", route: "/", id: "home" },
   { label: "About", route: "/about", id: "about" },
   { label: "Services", route: "/services", id: "services" },
-  { label: "Support", route: "/faq", id: "support" }, // 🔁 Changed label only
+  { label: "Support", route: "/faq", id: "support" },
   { label: "Contact", route: "/contact", id: "contact" },
 ];
 
@@ -52,7 +51,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
         
-        {/* LOGO — Updated to use /ECOM.png */}
+        {/* LOGO */}
         <NavLink to="/" className="flex items-center gap-2 z-50 relative">
           <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200">
             <img 
@@ -64,8 +63,8 @@ export default function Navbar() {
           <div className="flex flex-col">
             <div className="flex items-baseline gap-0.5">
               <span className="text-xl font-extrabold tracking-tight text-slate-900">Ecom</span>
-              <span className="text-xl font-bold tracking-tight text-[#015B97]">Network</span>
-              <div className="w-1.5 h-1.5 rounded-full bg-[#FF8C00] mb-1 ml-0.5 animate-pulse" />
+              <span className="text-xl font-bold tracking-tight text-[#003366]">Network</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#F9A825] mb-1 ml-0.5 animate-pulse" />
             </div>
           </div>
         </NavLink>
@@ -77,10 +76,10 @@ export default function Navbar() {
               key={item.id}
               to={item.route}
               className={({ isActive }) =>
-                `block px-5 py-2 text-sm font-semibold transition-colors duration-200 mx-1 rounded-full ${
+                `block px-5 py-2 text-sm font-semibold transition-colors duration-200 mx-1 rounded-lg ${
                   isActive 
-                    ? "bg-[#015B97] text-white" 
-                    : "text-slate-900 hover:text-[#015B97] hover:bg-slate-100"
+                    ? "bg-[#003366] text-white" 
+                    : "text-slate-700 hover:text-[#003366] hover:bg-slate-100"
                 }`
               }
             >
@@ -89,11 +88,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* RIGHT ACTIONS */}
+        {/* RIGHT ACTIONS — Updated Phone & Button */}
         <div className="hidden lg:flex items-center gap-3">
           <a 
-            href="tel:+254726818938"
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-200 hover:scale-105"
+            href="tel:+254740943523"
+            className="w-11 h-11 flex items-center justify-center rounded-lg bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-200 hover:scale-105"
             title="Call Support"
           >
             <Phone size={20} strokeWidth={2.5} />
@@ -103,7 +102,7 @@ export default function Navbar() {
 
           <NavLink 
             to="/contact"
-            className="px-5 py-2.5 bg-[#FFC107] text-slate-900 hover:bg-[#FFB300] text-sm font-bold rounded-full shadow hover:shadow-md transition-colors"
+            className="px-5 py-2.5 bg-[#F9A825] text-[#003366] hover:bg-[#FFB347] text-sm font-bold rounded-lg shadow hover:shadow-md transition-colors"
           >
             Get Connected
           </NavLink>
@@ -118,7 +117,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU — Professional Sharp Corners */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -136,22 +135,22 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl p-6 overflow-y-auto"
             >
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex justify-between items-center mb-6">
                 <span className="text-xl font-extrabold text-slate-900">Menu</span>
-                <button onClick={() => setIsOpen(false)} className="p-2 bg-slate-100 rounded-full text-slate-500">
+                <button onClick={() => setIsOpen(false)} className="p-2 bg-slate-100 rounded-lg text-slate-500">
                   <X size={20} />
                 </button>
               </div>
 
-              <div className="flex flex-col gap-3 mb-8">
+              <div className="flex flex-col gap-2 mb-6">
                 {MENU_ITEMS.map((item) => (
                   <NavLink 
                     key={item.id}
                     to={item.route}
                     className={({isActive}) => 
-                      `block p-4 rounded-2xl text-lg font-semibold transition-colors ${
+                      `block p-4 rounded-lg text-lg font-semibold transition-colors ${
                         isActive 
-                          ? "bg-[#015B97] text-white" 
+                          ? "bg-[#003366] text-white" 
                           : "text-slate-900 hover:bg-slate-100"
                       }`
                     }
@@ -161,10 +160,10 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* Mobile Phone Link */}
+              {/* Mobile Phone Link — Updated number */}
               <a 
-                href="tel:+254716425483"
-                className="flex items-center justify-center gap-3 py-3 w-full bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold mb-4"
+                href="tel:+254740943523"
+                className="flex items-center justify-center gap-3 py-3 w-full bg-[#25D366]/10 text-[#25D366] rounded-lg font-bold mb-4"
               >
                 <Phone size={18} strokeWidth={2.5} />
                 Call Now
@@ -172,7 +171,7 @@ export default function Navbar() {
 
               <NavLink 
                 to="/contact" 
-                className="flex items-center justify-center py-3 w-full bg-[#FFC107] text-slate-900 rounded-xl font-bold shadow"
+                className="flex items-center justify-center py-3 w-full bg-[#F9A825] text-[#003366] rounded-lg font-bold shadow"
               >
                 Get Connected Now
               </NavLink>

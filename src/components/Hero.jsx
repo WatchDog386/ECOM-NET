@@ -67,6 +67,20 @@ const featuresList = [
   { icon: <Zap size={24} className="text-[#00a1df]" />, label: "High Speed Internet" },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -87,21 +101,23 @@ const Hero = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F9A825]">
       
-      {/* HERO SECTION */}
-      <section className="relative pt-20 pb-12 md:pt-28 overflow-hidden bg-white">
+      {/* HERO SECTION - MODERATE DARK (CHARCOAL/SLATE) */}
+      <section className="relative pt-20 pb-16 md:pt-28 overflow-hidden bg-[#334155]">
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}>
-            <h1 className="text-4xl md:text-5xl font-black text-[#003366] leading-tight mb-4 tracking-tighter">
+            <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tighter">
               Make Your Home <br /> A <span className="text-[#F9A825]">Happy Place</span>
             </h1>
-            <p className="text-base md:text-lg text-slate-600 mb-6 max-w-lg font-medium">
-              Design your digital life with confidence using industry fiber infrastructure.
+            <p className="text-base md:text-lg text-slate-200 mb-6 max-w-lg font-medium">
+              Design your digital life with confidence using industry-leading fiber infrastructure. Fast, stable, and affordable.
             </p>
             <div className="flex flex-wrap gap-3">
-              <button className="px-6 py-2.5 bg-[#003366] text-white font-bold rounded-full text-sm shadow">Learn More</button>
+              <button className="px-6 py-2.5 bg-white text-[#334155] font-bold rounded-full text-sm shadow hover:bg-slate-100 transition-colors">
+                Learn More
+              </button>
               <button 
                 onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
-                className="px-6 py-2.5 bg-[#F9A825] text-white font-bold rounded-full text-sm"
+                className="px-6 py-2.5 bg-[#F9A825] text-white font-bold rounded-full text-sm shadow hover:brightness-110"
               >
                 Contact Sales
               </button>
@@ -109,8 +125,8 @@ const Hero = () => {
           </motion.div>
           
           <div className="hidden lg:block relative">
-            <div className="w-[480px] h-[320px] bg-slate-100 rounded-[2.5rem] p-5 shadow-xl relative border border-slate-200">
-               <div className="w-full h-full bg-[#1a1a1a] rounded-xl flex flex-col items-center justify-center text-center p-5 text-white">
+            <div className="w-[480px] h-[320px] bg-slate-700 rounded-[2.5rem] p-5 shadow-2xl relative border border-slate-600">
+               <div className="w-full h-full bg-[#1e293b] rounded-xl flex flex-col items-center justify-center text-center p-5 text-white">
                     <Wifi size={44} className="text-[#F9A825] mb-3" />
                     <h2 className="text-3xl font-black tracking-tight uppercase italic">Ecom Net</h2>
                     <p className="text-[#F9A825] font-bold tracking-widest mt-1 text-[9px]">GET CONNECTED</p>
@@ -118,10 +134,10 @@ const Hero = () => {
                       onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
                       className="mt-4 bg-[#F9A825] text-[#003366] px-5 py-1.5 rounded-full font-black text-[9px]"
                     >
-                      GET CONNECTED
+                      ORDER NOW
                     </button>
                </div>
-               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-16 h-12 bg-slate-200 rounded-b-lg shadow"></div>
+               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-16 h-12 bg-slate-700 rounded-b-lg shadow"></div>
             </div>
           </div>
         </div>
@@ -130,57 +146,67 @@ const Hero = () => {
       {/* FEATURE STRIP */}
       <section className="hidden md:flex py-6 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="flex items-center justify-around w-full">
+          <motion.div 
+            className="flex items-center justify-around w-full"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {featuresList.map((feature, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center gap-1.5">
+              <motion.div 
+                key={idx} 
+                variants={itemVariants}
+                className="flex flex-col items-center text-center gap-1.5"
+              >
                 <div className="transition-transform hover:scale-110">{feature.icon}</div>
                 <p className="text-[11px] font-medium text-slate-700 max-w-[90px] leading-tight">
                   {feature.label}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* PLANS SECTION */}
-      <section id="plans" className="py-10 md:py-12 bg-white">
+      <section id="plans" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-6 md:mb-8">
+          <div className="text-center mb-8">
             <h2 className="text-lg md:text-xl font-bold text-[#1F5493]">
               Ecom Net – Internet Plans for You!
             </h2>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-6 mb-12">
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className="w-full max-w-[260px] bg-white rounded-xl border border-slate-100 shadow hover:shadow-md transition-shadow"
+                className="w-full max-w-[260px] bg-white rounded-xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                <div className={`${plan.headerColor} text-white pt-5 pb-6 rounded-t-xl rounded-b-[32px] flex flex-col items-center relative z-10`}>
-                  <span className="text-[9px] font-bold uppercase tracking-wider opacity-90">{plan.name}</span>
-                  <h3 className="text-2xl font-extrabold mt-1 text-black">{plan.speed}</h3>
+                <div className={`${plan.headerColor} text-white pt-5 pb-8 rounded-t-xl rounded-b-[32px] flex flex-col items-center relative z-10`}>
+                  <span className="text-[9px] font-bold uppercase tracking-wider opacity-90 mb-1">{plan.name}</span>
+                  <h3 className="text-3xl font-black text-white drop-shadow-md">{plan.speed}</h3>
                   <div className="flex items-baseline gap-1 mt-1">
-                    <span className="text-[11px]">Ksh</span>
-                    <span className="text-lg font-bold">{plan.price}</span>
-                    <span className="text-[7px]">/month</span>
+                    <span className="text-[11px] font-medium">Ksh</span>
+                    <span className="text-xl font-bold">{plan.price}</span>
+                    <span className="text-[7px] opacity-80 uppercase">/month</span>
                   </div>
                 </div>
 
-                <div className="relative z-20 -mt-2 flex justify-center">
+                <div className="relative z-20 -mt-3 flex justify-center">
                   <button 
                     onClick={() => handlePlanSelect(plan)}
-                    className={`${plan.btnColor} font-bold text-[9px] uppercase px-5 py-1.5 rounded-full shadow hover:scale-[1.02] transition-transform ring-2 ring-white`}
+                    className={`${plan.btnColor} font-black text-[9px] uppercase px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-transform ring-4 ring-white`}
                   >
                     GET CONNECTED
                   </button>
                 </div>
 
-                <div className="pt-3 px-4 pb-4">
-                  <ul className="space-y-1.5 text-left">
+                <div className="pt-6 px-4 pb-5">
+                  <ul className="space-y-2 text-left">
                     {plan.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-1.5 text-[11px] text-slate-600">
+                      <li key={i} className="flex items-start gap-1.5 text-[11px] text-slate-700 font-medium">
                         <CheckCircle size={12} className="text-[#00BCD4] shrink-0 mt-0.5" />
                         <span className="leading-tight">{feat}</span>
                       </li>
@@ -192,13 +218,19 @@ const Hero = () => {
           </div>
 
           {/* INSTALLATION TABLE */}
-          <div className="max-w-2xl mx-auto mt-12 bg-slate-50 rounded-2xl p-6 border border-slate-200">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto mt-12 bg-slate-50 p-6 border border-slate-200"
+          >
             <div className="flex items-center gap-2 mb-4">
               <HardHat size={20} className="text-[#E69138]" />
               <h3 className="text-lg font-bold text-[#003366]">One-Time Installation Fee</h3>
             </div>
             
-            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+            <div className="overflow-hidden border border-slate-200 bg-white">
               <table className="w-full text-left text-sm">
                 <thead className="bg-[#003366] text-white">
                   <tr>
@@ -223,28 +255,35 @@ const Hero = () => {
               </table>
             </div>
 
-            <div className="mt-4 flex items-start gap-2 bg-yellow-50 p-3 rounded-lg border border-yellow-100">
+            <div className="mt-4 flex items-start gap-2 bg-yellow-50 p-3 border border-yellow-100">
               <Info size={16} className="text-yellow-600 shrink-0 mt-0.5" />
               <p className="text-[12px] text-yellow-800 leading-snug">
-                <strong>Note:</strong> The installation fee is a one-time payment. Monthly WiFi package subscriptions are paid <strong>separately</strong> and are not included in the installation cost.
+                <strong>Note:</strong> The installation fee is a one-time payment. Monthly WiFi package subscriptions are paid <strong>separately</strong>.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US — FULLY ALIGNED & CONSISTENT */}
+      {/* WHY CHOOSE US */}
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-black text-[#003366] uppercase tracking-tight">Why Choose Ecom Net?</h2>
             <div className="w-12 h-0.5 bg-[#F9A825] mx-auto mt-2"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {infoCards.map((card, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="flex flex-col border border-slate-200 rounded-xl overflow-hidden h-full"
+                variants={itemVariants}
+                className="flex flex-col border border-slate-200 overflow-hidden h-full shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="aspect-video bg-slate-100">
                   <img
@@ -257,65 +296,52 @@ const Hero = () => {
                   <h4 className="font-black text-[12px] text-[#F9A825] mb-1">{card.title}</h4>
                   <p className="text-[10px] text-white/80">{card.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FINAL CTA */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="bg-blue-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-blue-50 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-12 border border-slate-200"
+          >
             <div className="md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-black text-[#003366] mb-3">
                 Ready for <span className="text-[#F9A825]">Blazing Fast</span> Internet?
               </h2>
               <p className="text-slate-600 mb-6 text-sm md:text-base">
-                Join thousands of satisfied customers who trust Ecom Net for their internet needs. Get connected today and experience the difference.
+                Join thousands of satisfied customers who trust Ecom Net for their internet needs.
               </p>
               <div className="flex flex-col gap-3 text-sm">
                 <div className="flex items-center gap-2">
                   <Phone size={18} className="text-green-500" />
-                  <span>Call us 24/7</span>
+                  <span>Call us 24/7: <strong>0740 943 523</strong></span>
                 </div>
-                <div className="pl-6 text-[#003366] font-bold">0740 943 523</div>
                 <div className="flex items-center gap-2">
                   <Mail size={18} className="text-blue-500" />
-                  <span>Email us at</span>
+                  <span>Email: <strong>sales@ecomnet.ke</strong></span>
                 </div>
-                <div className="pl-6 text-[#003366] font-bold">sales@ecomnet.ke</div>
               </div>
             </div>
 
-            <div className="md:w-1/2 bg-[#003366] rounded-xl p-6 md:p-8 text-white">
-              <h3 className="text-lg font-bold mb-4">Get Connected Today</h3>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-green-400" />
-                  <span>Installation within 24 hours</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-green-400" />
-                  <span>No contract required</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-green-400" />
-                  <span>Reliable After-sales Support</span>
-                </li>
-              </ul>
+            <div className="md:w-1/2 bg-[#003366] p-6 md:p-8 text-white border border-slate-300">
+              <h3 className="text-lg font-bold mb-4 text-center">Get Connected Today</h3>
               <button 
                 onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
-                className="w-full bg-[#F9A825] text-[#003366] font-bold py-3 rounded-full flex items-center justify-center gap-2 hover:bg-yellow-500 transition-colors"
+                className="w-full bg-[#F9A825] text-[#003366] font-bold py-3 flex items-center justify-center gap-2 hover:bg-yellow-500 transition-colors"
               >
                 <FaWhatsapp size={18} />
                 ORDER ON WHATSAPP →
               </button>
-              <p className="text-white/60 text-xs text-center mt-3">
-                Response within 15 minutes during business hours
-              </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -332,19 +358,15 @@ const Hero = () => {
                 <X size={24}/>
               </button>
               
-              <h3 className="text-xl font-black text-[#003366] mb-1">Order Summary</h3>
+              <h3 className="text-xl font-black text-[#003366] mb-4">Order Summary</h3>
               <p className="text-slate-600 text-sm mb-4">
                 Selected: <span className="font-bold">{selectedPlan?.name} ({selectedPlan?.speed})</span>
               </p>
-              
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg text-[12px] text-blue-800">
-                <strong>Pricing Note:</strong> Total initial payment includes the package (Ksh {selectedPlan?.price}) + Installation (Ksh 2,000).
-              </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input 
                   required 
-                  className="w-full border border-slate-200 p-3 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[#003366]"
+                  className="w-full border border-slate-200 p-3 text-sm rounded-lg"
                   placeholder="Your Full Name"
                   onChange={e => setFormData({...formData, name: e.target.value})}
                 />
