@@ -35,29 +35,29 @@ const itemVariants = {
 };
 
 const features = [
-  { title: "High-Velocity Fiber", icon: <Rocket size={18} />, desc: "Symmetrical speeds." },
-  { title: "99.9% Uptime SLA", icon: <LinkIcon size={18} />, desc: "Redundant backbone." },
-  { title: "Cost Efficiency", icon: <DollarSign size={18} />, desc: "Residential pricing." },
-  { title: "24/7 Engineering", icon: <Headphones size={18} />, desc: "Direct technical access." }
+  { title: "High-Velocity Fiber", icon: <Rocket size={16} />, desc: "Symmetrical speeds." },
+  { title: "99.9% Uptime SLA", icon: <LinkIcon size={16} />, desc: "Redundant backbone." },
+  { title: "Cost Efficiency", icon: <DollarSign size={16} />, desc: "Residential pricing." },
+  { title: "24/7 Engineering", icon: <Headphones size={16} />, desc: "Direct technical access." }
 ];
 
 const faqsData = {
   "Account & Billing": {
-    icon: <User size={18} />,
+    icon: <User size={16} />,
     description: "Manage your profile, payments, and invoices.",
     items: [
       {
         question: "How do I create a self-care account?",
         answer: (
-          <div className="space-y-3">
-            <p>To initialize your client portal access:</p>
-            <ol className="list-decimal pl-5 space-y-2 marker:text-[#015B97] marker:font-bold">
+          <div className="space-y-2.5">
+            <p className="text-[13px]">To initialize your client portal access:</p>
+            <ol className="list-decimal pl-4 space-y-1.5 text-[12px] marker:text-[#015B97] marker:font-bold">
               <li>Navigate to <strong>ecomnetwork.co.ke/portal</strong></li>
               <li>Select 'Client Registration'</li>
               <li>Input your Account ID (Found on your invoice)</li>
               <li>Verify via SMS OTP</li>
             </ol>
-            <div className="bg-slate-50 p-4 border-l-4 border-[#015B97] text-xs">
+            <div className="bg-slate-50 p-3 border-l-4 border-[#015B97] text-[11px]">
               <strong>Note:</strong> Corporate clients please contact your dedicated account manager.
             </div>
           </div>
@@ -66,16 +66,16 @@ const faqsData = {
       {
         question: "How can I view and pay my invoices?",
         answer: (
-          <div className="space-y-4">
-            <p><strong>Available Payment Channels:</strong></p>
+          <div className="space-y-3">
+            <p className="text-[13px]"><strong>Available Payment Channels:</strong></p>
             <div className="grid gap-2">
-              <div className="flex items-center gap-3 p-3 border border-slate-200 bg-slate-50">
-                <CreditCard size={16} className="text-[#015B97]" /> 
-                <span>M-Pesa Paybill: <strong>4136553</strong></span>
+              <div className="flex items-center gap-2.5 p-2.5 border border-slate-200 bg-slate-50">
+                <CreditCard size={14} className="text-[#015B97]" /> 
+                <span className="text-[12px]">M-Pesa Paybill: <strong>4136553</strong></span>
               </div>
-              <div className="flex items-center gap-3 p-3 border border-slate-200 bg-slate-50">
-                <CreditCard size={16} className="text-[#015B97]" /> 
-                <span>Direct Bank Transfer (EFT/RTGS)</span>
+              <div className="flex items-center gap-2.5 p-2.5 border border-slate-200 bg-slate-50">
+                <CreditCard size={14} className="text-[#015B97]" /> 
+                <span className="text-[12px]">Direct Bank Transfer (EFT/RTGS)</span>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const faqsData = {
     ],
   },
   "Service Configuration": {
-    icon: <Settings size={18} />,
+    icon: <Settings size={16} />,
     description: "Bandwidth, IPs, and hardware settings.",
     items: [
       { question: "Can I upgrade my bandwidth anytime?", answer: "Yes. Adjustments can be made dynamically via the portal. Changes typically apply within 15 minutes." },
@@ -92,13 +92,13 @@ const faqsData = {
     ],
   },
   "Technical Support": {
-    icon: <HelpCircle size={18} />,
+    icon: <HelpCircle size={16} />,
     description: "Outages, speed tests, and troubleshooting.",
     items: [
       {
         question: "Basic Connection Troubleshooting",
         answer: (
-          <ul className="list-disc pl-5 space-y-2">
+          <ul className="list-disc pl-4 space-y-1.5 text-[13px]">
             <li>Ensure the ONU/Router has power.</li>
             <li>Check for a 'LOS' red light on the device.</li>
             <li>Perform a power cycle (unplug for 30 seconds).</li>
@@ -128,25 +128,25 @@ export default function Faqs() {
 
       <Navbar />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative pt-32 pb-32 overflow-hidden bg-slate-900">
+      {/* --- HERO SECTION (scaled down to match Hero.jsx) --- */}
+      <section className="relative pt-28 pb-24 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 opacity-40">
             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070" className="w-full h-full object-cover" alt="Background" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#015B97] to-slate-900" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="risa-badge mb-6 inline-block !bg-white/10 !text-white border-white/20">Knowledge Base</div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+            <div className="risa-badge mb-4 inline-block !bg-white/10 !text-white border-white/20 text-[10px] px-3 py-1 rounded">Knowledge Base</div>
+            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
               How can we <span className="text-[#3288e6]">help you?</span>
             </h1>
             
-            <div className="max-w-2xl mx-auto relative mt-8">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+            <div className="max-w-xl mx-auto relative mt-6">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input
                 type="text"
-                className="w-full pl-14 pr-6 py-5 bg-white rounded-none border-none shadow-2xl focus:ring-4 focus:ring-[#015B97]/20 text-lg outline-none"
+                className="w-full pl-12 pr-4 py-3.5 bg-white rounded-none border-none shadow-xl focus:ring-2 focus:ring-[#015B97]/20 text-sm outline-none"
                 placeholder="Search for solutions..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -156,18 +156,21 @@ export default function Faqs() {
         </div>
       </section>
 
-      {/* --- FEATURE STRIP (Sharp) --- */}
-      <section className="relative z-20 -mt-10 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* --- FEATURE STRIP --- */}
+      <section className="relative z-20 -mt-8 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {features.map((feature, idx) => (
             <motion.div 
-              key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}
-              className="bg-white p-6 border border-slate-200 shadow-lg flex items-start gap-4"
+              key={idx} 
+              initial={{ opacity: 0, y: 10 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white p-4 border border-slate-200 shadow-sm flex items-start gap-3"
             >
-              <div className="p-3 bg-[#015B97] text-white rounded-none">{feature.icon}</div>
+              <div className="p-2 bg-[#015B97] text-white rounded-sm">{feature.icon}</div>
               <div>
-                <h3 className="font-black text-[#015B97] text-xs uppercase tracking-widest mb-1">{feature.title}</h3>
-                <p className="text-slate-500 text-xs">{feature.desc}</p>
+                <h3 className="font-bold text-[#015B97] text-[10px] uppercase tracking-wide mb-0.5">{feature.title}</h3>
+                <p className="text-slate-500 text-[10px]">{feature.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -175,41 +178,41 @@ export default function Faqs() {
       </section>
 
       {/* --- MAIN CONTENT AREA --- */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
+      <section className="py-16 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8">
           
           {/* Sidebar Navigation */}
           <div className="lg:col-span-4">
-            <div className="sticky top-28 space-y-6">
+            <div className="sticky top-24 space-y-5">
               <div className="bg-white border border-slate-200 p-2 shadow-sm">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] p-4">Departments</p>
-                <div className="space-y-1">
+                <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] p-3">Departments</p>
+                <div className="space-y-0.5">
                   {Object.entries(faqsData).map(([key, { icon }]) => (
                     <button
                       key={key}
                       onClick={() => { setActiveCategory(key); setOpenIndex(null); }}
-                      className={`w-full flex items-center justify-between p-4 font-bold text-sm transition-all ${
-                        activeCategory === key ? "bg-[#015B97] text-white shadow-lg" : "text-slate-600 hover:bg-slate-50"
+                      className={`w-full flex items-center justify-between p-3 font-semibold text-xs transition-all ${
+                        activeCategory === key ? "bg-[#015B97] text-white" : "text-slate-600 hover:bg-slate-50"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5">
                         {icon}
                         <span>{key}</span>
                       </div>
-                      <ChevronRight size={16} className={activeCategory === key ? "opacity-100" : "opacity-0"} />
+                      <ChevronRight size={14} className={activeCategory === key ? "opacity-100" : "opacity-0"} />
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Engineering Support Box */}
-              <div className="bg-slate-900 p-8 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10"><Headphones size={60} /></div>
-                <h4 className="text-xl font-black mb-2 uppercase">Direct Support</h4>
-                <p className="text-slate-400 text-xs leading-relaxed mb-6">Can't find what you need? Open a direct technical ticket with our engineering team.</p>
+              <div className="bg-slate-900 p-6 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-3 opacity-10"><Headphones size={40} /></div>
+                <h4 className="text-lg font-black mb-1.5 uppercase text-[13px]">Direct Support</h4>
+                <p className="text-slate-400 text-[11px] leading-relaxed mb-4">Can't find what you need? Open a direct technical ticket with our engineering team.</p>
                 <button 
                   onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
-                  className="w-full py-4 bg-[#3288e6] hover:bg-white hover:text-[#015B97] transition-all font-black text-xs uppercase tracking-widest"
+                  className="w-full py-2.5 bg-[#3288e6] hover:bg-white hover:text-[#015B97] transition-all font-bold text-[10px] uppercase tracking-wide"
                 >
                   Request Assistance
                 </button>
@@ -219,40 +222,42 @@ export default function Faqs() {
 
           {/* FAQ Accordion List */}
           <div className="lg:col-span-8">
-            <div className="mb-10 flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-[#015B97] flex items-center justify-center border border-[#015B97]/20">
+            <div className="mb-8 flex items-center gap-3">
+                <div className="w-10 h-10 bg-blue-50 text-[#015B97] flex items-center justify-center border border-[#015B97]/20 rounded">
                     {faqsData[activeCategory].icon}
                 </div>
                 <div>
-                    <h2 className="text-3xl font-black text-[#015B97] uppercase tracking-tight">{activeCategory}</h2>
-                    <p className="text-slate-500 text-sm font-medium">{faqsData[activeCategory].description}</p>
+                    <h2 className="text-2xl font-black text-[#015B97] tracking-tight">{activeCategory}</h2>
+                    <p className="text-slate-500 text-sm">{faqsData[activeCategory].description}</p>
                 </div>
             </div>
 
-            <motion.div variants={containerVariants} initial="hidden" animate="visible" key={activeCategory} className="space-y-4">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" key={activeCategory} className="space-y-3">
               {filteredFaqs.length > 0 ? (
                 filteredFaqs.map((faq, i) => (
                   <motion.div key={i} variants={itemVariants} className="bg-white border border-slate-200">
                     <button
                       onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                      className="w-full p-6 text-left flex justify-between items-center group"
+                      className="w-full p-4 text-left flex justify-between items-center group"
                     >
-                      <span className={`font-bold transition-colors ${openIndex === i ? 'text-[#015B97]' : 'text-slate-700 group-hover:text-[#015B97]'}`}>
+                      <span className={`font-semibold transition-colors text-sm ${openIndex === i ? 'text-[#015B97]' : 'text-slate-700 group-hover:text-[#015B97]'}`}>
                         {faq.question}
                       </span>
-                      <div className={`p-1 transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-[#015B97]' : 'text-slate-300'}`}>
-                        {openIndex === i ? <Minus size={18} /> : <Plus size={18} />}
+                      <div className={`p-0.5 transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-[#015B97]' : 'text-slate-400'}`}>
+                        {openIndex === i ? <Minus size={14} /> : <Plus size={14} />}
                       </div>
                     </button>
                     
                     <AnimatePresence>
                       {openIndex === i && (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          initial={{ height: 0, opacity: 0 }} 
+                          animate={{ height: "auto", opacity: 1 }} 
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <div className="px-6 pb-6 pt-0 text-slate-600 text-sm leading-7 border-t border-slate-50">
-                            <div className="pt-6">{faq.answer}</div>
+                          <div className="px-4 pb-4 pt-0 text-slate-600 text-[13px] leading-relaxed border-t border-slate-50">
+                            <div className="pt-3">{faq.answer}</div>
                           </div>
                         </motion.div>
                       )}
@@ -260,8 +265,8 @@ export default function Faqs() {
                   </motion.div>
                 ))
               ) : (
-                <div className="text-center py-20 border-2 border-dashed border-slate-200">
-                  <p className="text-slate-400 font-bold uppercase tracking-widest">No articles match your search</p>
+                <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded">
+                  <p className="text-slate-400 font-semibold uppercase tracking-wide text-sm">No articles match your search</p>
                 </div>
               )}
             </motion.div>
@@ -270,27 +275,27 @@ export default function Faqs() {
       </section>
 
       {/* --- BOTTOM CONTACT STRIP --- */}
-      <section className="bg-white border-t border-slate-200 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-            <a href="tel:+254740943523" className="flex items-center gap-5 p-8 border border-slate-100 hover:border-[#015B97] transition-all group">
-                <Phone className="text-slate-300 group-hover:text-[#015B97]" size={24}/>
+      <section className="bg-white border-t border-slate-200 py-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-3 gap-4">
+            <a href="tel:+254740943523" className="flex items-center gap-3 p-5 border border-slate-100 hover:border-[#015B97] transition-all group">
+                <Phone className="text-slate-400 group-hover:text-[#015B97]" size={20}/>
                 <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase">Call Center</p>
-                    <p className="font-bold text-slate-800">+254 740 943 523</p>
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Call Center</p>
+                    <p className="font-bold text-slate-800 text-sm">+254 740 943 523</p>
                 </div>
             </a>
-            <a href="mailto:support@ecomnetwork.co.ke" className="flex items-center gap-5 p-8 border border-slate-100 hover:border-[#015B97] transition-all group">
-                <Mail className="text-slate-300 group-hover:text-[#015B97]" size={24}/>
+            <a href="mailto:support@ecomnetwork.co.ke" className="flex items-center gap-3 p-5 border border-slate-100 hover:border-[#015B97] transition-all group">
+                <Mail className="text-slate-400 group-hover:text-[#015B97]" size={20}/>
                 <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase">Email Support</p>
-                    <p className="font-bold text-slate-800">support@ecomnetwork.co.ke</p>
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Email Support</p>
+                    <p className="font-bold text-slate-800 text-sm">support@ecomnetwork.co.ke</p>
                 </div>
             </a>
-            <a href="https://wa.me/+254740943523" className="flex items-center gap-5 p-8 bg-[#25D366] text-white group">
-                <FaWhatsapp className="text-white/80 group-hover:text-white" size={24}/>
+            <a href="https://wa.me/+254740943523" className="flex items-center gap-3 p-5 bg-[#25D366] text-white group">
+                <FaWhatsapp className="text-white/80 group-hover:text-white" size={20}/>
                 <div>
-                    <p className="text-[10px] font-black text-white/70 uppercase">Live Assistance</p>
-                    <p className="font-bold">Chat with Engineering</p>
+                    <p className="text-[9px] font-black text-white/70 uppercase">Live Assistance</p>
+                    <p className="font-bold text-sm">Chat with Engineering</p>
                 </div>
             </a>
         </div>
