@@ -1,3 +1,4 @@
+// Hero.jsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -83,46 +84,52 @@ const itemVariants = {
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [formData, setFormData] = useState({ name: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    location: '',
+    email: '',
+    message: ''
+  });
 
   const handlePlanSelect = (plan) => {
     setSelectedPlan(plan);
     setShowForm(true);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const message = `Connection Request: ${selectedPlan?.name} (${selectedPlan?.speed}) by ${formData.name}`;
-    window.open(`https://wa.me/+254740943523?text=${encodeURIComponent(message)}`, '_blank');
-    setShowForm(false);
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F9A825]">
       
-      {/* HERO SECTION — UNTOUCHED */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-[#334155]">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:gap-8 items-center min-h-[440px] md:min-h-[520px]">
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}>
-            <h1 className="text-3xl md:text-4xl font-black text-white leading-tight mb-4 tracking-tight">
+      {/* HERO SECTION — WHITE BACKGROUND */}
+      <section className="relative pt-8 pb-12 md:pt-16 md:pb-20 lg:pt-24 lg:pb-28 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-6 md:gap-8 items-center min-h-[300px] md:min-h-[400px] lg:min-h-[520px]">
+          {/* Text Content — Centered on Mobile/Tablet */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-center lg:text-left"
+          >
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#003366] leading-tight mb-4 tracking-tight">
               Make Your Home <br /> A <span className="text-[#F9A825]">Happy Place</span>
             </h1>
-            <p className="text-sm md:text-base text-slate-200 mb-6 max-w-lg font-medium">
+            <p className="text-xs md:text-sm lg:text-base text-slate-600 mb-6 max-w-lg mx-auto lg:mx-0 font-medium">
               Design your digital life with confidence using industry-leading fiber infrastructure. Fast, stable, and affordable.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <button className="px-6 py-2.5 bg-white text-[#334155] font-bold rounded-full text-xs shadow hover:bg-slate-100 transition-colors">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+              <button className="px-4 py-2 bg-[#003366] text-white font-bold rounded-full text-xs md:text-sm shadow hover:bg-[#002244] transition-colors">
                 Learn More
               </button>
               <button 
                 onClick={() => window.open("https://wa.me/+254740943523", "_blank")}
-                className="px-6 py-2.5 bg-[#F9A825] text-white font-bold rounded-full text-xs shadow hover:brightness-110"
+                className="px-4 py-2 bg-[#F9A825] text-[#003366] font-bold rounded-full text-xs md:text-sm shadow hover:brightness-110"
               >
                 Contact Sales
               </button>
             </div>
           </motion.div>
           
+          {/* Floating Card — Unchanged */}
           <div className="hidden lg:block relative">
             <div className="w-[460px] h-[300px] bg-slate-700 rounded-2xl p-5 shadow-2xl relative border border-slate-600">
                <div className="w-full h-full bg-[#1e293b] rounded-xl flex flex-col items-center justify-center text-center p-5 text-white">
@@ -142,7 +149,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* FEATURE STRIP — UNTOUCHED */}
+      {/* FEATURE STRIP */}
       <section className="hidden md:flex py-4 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 w-full">
           <motion.div 
@@ -168,8 +175,8 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* WIFI PLANS SECTION — ADJUSTED SPACING AND TEXT SIZES */}
-      <section id="plans" className="py-20 bg-white"> {/* Increased py-10 to py-20 for better section separation */}
+      {/* WIFI PLANS SECTION */}
+      <section id="plans" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-xl md:text-2xl font-black text-[#1F5493]">
@@ -184,7 +191,6 @@ const Hero = () => {
                 key={index}
                 className="w-full max-w-[280px] bg-white rounded-xl border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                {/* Header: Increased padding and text size */}
                 <div className={`${plan.headerColor} text-white pt-6 pb-10 rounded-t-xl rounded-b-3xl flex flex-col items-center relative z-10`}>
                   <span className="text-[10px] font-bold uppercase tracking-widest opacity-90 mb-2">{plan.name}</span>
                   <h3 className="text-3xl font-black">{plan.speed}</h3>
@@ -195,7 +201,6 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Button: Increased text size from 8px */}
                 <div className="relative z-20 -mt-4 flex justify-center">
                   <button 
                     onClick={() => handlePlanSelect(plan)}
@@ -205,7 +210,6 @@ const Hero = () => {
                   </button>
                 </div>
 
-                {/* Features: Increased text size from 10px */}
                 <div className="pt-8 px-5 pb-6">
                   <ul className="space-y-3 text-left">
                     {plan.features.map((feat, i) => (
@@ -220,7 +224,6 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* INSTALLATION TABLE — UNTOUCHED */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -268,7 +271,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* WHY CHOOSE US — UNTOUCHED */}
+      {/* WHY CHOOSE US */}
       <section className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-5">
@@ -305,7 +308,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* FINAL CTA — UNTOUCHED */}
+      {/* FINAL CTA */}
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div 
@@ -347,34 +350,119 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* MODAL FORM — UNTOUCHED */}
+      {/* MODAL: SHARP, CLEAN FORM — MATCHING PAGE DESIGN */}
       <AnimatePresence>
-        {showForm && (
+        {showForm && selectedPlan && (
           <div className="fixed inset-0 bg-[#003366]/90 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               className="bg-white w-full max-w-md border-t-4 border-[#F9A825] p-5 rounded-xl shadow-xl relative"
             >
-              <button onClick={() => setShowForm(false)} className="absolute top-2.5 right-2.5 text-slate-400 hover:text-red-500">
-                <X size={20}/>
+              <button 
+                onClick={() => setShowForm(false)} 
+                className="absolute top-2.5 right-2.5 text-slate-400 hover:text-red-500"
+              >
+                <X size={20} />
               </button>
-              
-              <h3 className="text-lg font-black text-[#003366] mb-3">Order Summary</h3>
-              <p className="text-slate-600 text-xs mb-3">
-                Selected: <span className="font-bold">{selectedPlan?.name} ({selectedPlan?.speed})</span>
-              </p>
 
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <input 
-                  required 
-                  className="w-full border border-slate-200 p-2.5 text-sm rounded-lg"
-                  placeholder="Your Full Name"
-                  onChange={e => setFormData({...formData, name: e.target.value})}
-                />
-                <button className="w-full bg-[#25D366] text-white font-bold py-2 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 text-sm">
-                  <FaWhatsapp size={16} /> Confirm on WhatsApp
-                </button>
+              <h3 className="text-lg font-black text-[#003366] mb-2">Connection Request</h3>
+              <p className="text-xs text-slate-600 mb-4">Fill in your details below</p>
+
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formattedDate = new Date().toLocaleDateString('en-GB'); // DD/MM/YYYY
+                  const message = `
+OPTIMAS FIBER - INTERNET CONNECTION REQUEST
+
+CUSTOMER DETAILS:
+Name: ${formData.name}
+Phone: ${formData.phone}
+Location: ${formData.location}
+Email: ${formData.email || "Not provided"}
+
+SELECTED PLAN:
+Plan: ${selectedPlan.name}
+Speed: ${selectedPlan.speed}
+Price: Ksh ${selectedPlan.price}/month
+
+FEATURES:
+${selectedPlan.features.map(f => `- ${f}`).join('\n')}
+
+REQUEST:
+${formData.message || "Please contact me to schedule installation."}
+
+Submitted: ${formattedDate}
+                  `.trim();
+
+                  window.open(`https://wa.me/+254740943523?text=${encodeURIComponent(message)}`, '_blank');
+                  setShowForm(false);
+                  setFormData({ name: '', phone: '', location: '', email: '', message: '' });
+                }}
+                className="space-y-3"
+              >
+                <div className="space-y-3">
+                  <input
+                    required
+                    value={formData.name}
+                    onChange={e => setFormData({...formData, name: e.target.value})}
+                    className="w-full border border-slate-200 p-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 placeholder:text-slate-400"
+                    placeholder="Full Name"
+                  />
+                  <input
+                    required
+                    type="tel"
+                    value={formData.phone}
+                    onChange={e => setFormData({...formData, phone: e.target.value})}
+                    className="w-full border border-slate-200 p-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 placeholder:text-slate-400"
+                    placeholder="Phone Number (e.g. 0726896562)"
+                  />
+                  <input
+                    required
+                    value={formData.location}
+                    onChange={e => setFormData({...formData, location: e.target.value})}
+                    className="w-full border border-slate-200 p-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 placeholder:text-slate-400"
+                    placeholder="Location (e.g. Kahawa West)"
+                  />
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={e => setFormData({...formData, email: e.target.value})}
+                    className="w-full border border-slate-200 p-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 placeholder:text-slate-400"
+                    placeholder="Email (optional)"
+                  />
+
+                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 text-xs">
+                    <p className="font-bold text-[#003366]">Selected Plan: {selectedPlan.name}</p>
+                    <p>Speed: {selectedPlan.speed} • Price: Ksh {selectedPlan.price}/month</p>
+                  </div>
+
+                  <textarea
+                    value={formData.message}
+                    onChange={e => setFormData({...formData, message: e.target.value})}
+                    className="w-full border border-slate-200 p-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 placeholder:text-slate-400"
+                    placeholder="Your request message (e.g. ‘I want to install this plan at my location...’)"
+                    rows="3"
+                  />
+                </div>
+
+                <div className="flex gap-2 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowForm(false)}
+                    className="flex-1 py-2 text-sm border border-slate-300 rounded hover:bg-slate-100 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 bg-[#25D366] text-white font-bold py-2 rounded flex items-center justify-center gap-2 hover:brightness-110 transition-all text-sm"
+                  >
+                    <FaWhatsapp size={16} /> Send Request
+                  </button>
+                </div>
               </form>
             </motion.div>
           </div>
